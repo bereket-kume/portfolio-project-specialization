@@ -1,0 +1,38 @@
+
+services:
+    backend:
+      container_name: edu-platform-api
+      build:
+          context: .
+          dockerfile: Dockerfile
+      ports:
+          - "3000:3000"
+      volumes:
+          - .:/app
+      environment:
+          - DATABASE_URL=mongodb://mongo:27017/nestjs
+          - REDIS_HOST=redis
+          - REDIS_PORT=6379
+      depends_on:
+          - mongo
+          - redis
+      command: sh -c "npm run build && npm run start:prod"
+
+    mongo:
+        container_name: mongo-db
+        image: mongo:5.0
+        ports:
+          - "27017:27017"
+        volumes:
+          - ./data/mongo:/data/db
+        environment:
+          - MONGO_INITDB_ROOT_USERNAME=root
+          - MONGO_INITDB_ROOT_PASSWORD=root  
+
+    redis:
+        container_name: redis-cache
+        image: redis:6-alpine
+        ports:
+            - "6379:6379"
+        volumes:
+            - ./data/redis:/data
