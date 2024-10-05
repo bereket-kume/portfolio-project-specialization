@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription("Backend Api")
     .setVersion('1.0')
     .addTag("edu")
+    .addBearerAuth()
     .build()
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
