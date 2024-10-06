@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateCommunityDto } from './dto/create-community.dto';
 import { UpdateCommunityDto } from './dto/updateCommunity.dto';
+import { Community } from '@prisma/client';
+import { identity } from 'rxjs';
 
 @Injectable()
 export class CommunityService {
@@ -15,8 +17,8 @@ export class CommunityService {
         return this.prisma.community.findUnique({
             where: { id },
         })
-
     }
+
 
     async createCommunity(createCommunityDto: CreateCommunityDto, creatorId: string) {
         const community = await this.prisma.community.create({
@@ -51,6 +53,14 @@ export class CommunityService {
             where: { id },
         });
         return { message: "Community deleted successfully" }
+    }
+
+    async getCommunitiesByPremiumStatus(isPremium: boolean): Promise<Community[]> {
+        return await this.prisma.community.findMany({
+            where: {
+                isPremium: isPremium,
+            },
+        });
     }
 }
 
