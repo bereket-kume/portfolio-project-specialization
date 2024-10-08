@@ -7,9 +7,10 @@ import { UserModule } from './user/user.module';
 import { PaymentModule } from './payment/payment.module';
 import { AnnouncementsModule } from './announcements/announcements.module';
 import { CommunityModule } from './community/community.module';
+import { SubscriptionModule } from './subscription/subscription.module';
 
 @Module({
-  imports: [AuthModule, RedisModule, UserModule, PaymentModule, AnnouncementsModule, CommunityModule],
+  imports: [AuthModule, RedisModule, UserModule, PaymentModule, AnnouncementsModule, CommunityModule, SubscriptionModule],
   controllers: [],
   providers: [AppService, PrismaService],
 })

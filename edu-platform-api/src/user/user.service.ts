@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { User, Prisma } from '@prisma/client'
+import { User, Prisma, Community, UserCommunity } from '@prisma/client'
+
 
 
 @Injectable()
@@ -13,11 +14,11 @@ export class UserService {
         });
     }
 
-    async getUserById(id: string): Promise<User | null> {
-        return this.prisma.user.findUnique({
-            where: { id}
-        })
-    }
+    // async getUserById(id: string): Promise<User> {
+    //     return this.prisma.user.findUnique({
+    //         where: { id}
+    //     })
+    // }
 
     async getAllUsers(): Promise<User[]> {
         return this.prisma.user.findMany();
@@ -35,4 +36,46 @@ export class UserService {
             where: { id },
         });
     }
+
+    async getUserProfile(userId: string) {
+        const user = await this.prisma.user.findUnique({
+            where: { id: userId },
+            include: {
+                createdCommunities: true, 
+                joinedCommunities: {     
+                    include: {
+                        community: true,  
+                    },
+                },
+                announcements: true,       
+                payments: {                
+                    include: {
+                        community: true,
+                    },
+                },
+            },
+        });
+    
+        if (!user) {
+            throw new NotFoundException("User Not Found");
+        }
+    
+        return {
+            
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            premiumStatus: user.premiumStatus,
+            createdCommunities: user.createdCommunities,
+            joinedCommunities: user.joinedCommunities.map(jc => jc.community),
+            announcements: user.announcements,
+            payments: user.payments.map(p => ({
+                amount: p.amount,
+                status: p.status,
+                community: p.community,
+            })),
+            createdAt: user.createdAt,
+        };
+    }
+    
 }

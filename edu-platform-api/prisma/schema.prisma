@@ -26,7 +26,6 @@ model User {
 enum Role {
   USER
   ADMIN
-  CREATOR
 }
 
 model Community {
