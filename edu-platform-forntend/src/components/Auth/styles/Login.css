@@ -1,0 +1,75 @@
+/* Container for the login form */
+.login-container {
+    max-width: 400px;
+    height: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #bbbace;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Heading for the login form */
+.login-heading {
+    text-align: center;
+    color: #333; /* Keeping this neutral */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input fields styling */
+.login-input {
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.login-input:focus {
+    border-color: #2193b0;
+    outline: none;
+}
+
+/* Button styling */
+.login-button {
+    padding: 12px;
+    background-color: #2193b0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #6dd5ed;
+    transform: scale(1.05);
+}
+
+/* Error and success messages */
+.login-message {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-error {
+    color: red;
+}
+
+.login-success {
+    color: green;
+}

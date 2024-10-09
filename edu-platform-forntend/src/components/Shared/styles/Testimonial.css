@@ -1,0 +1,78 @@
+/* Testimonial Slider Section */
+.testimonial-slider {
+    background-color: #f8f8f8;
+    padding: 60px 20px;
+    text-align: center;
+    position: relative; /* Needed for absolute positioning of arrows */
+}
+
+/* Slider Heading */
+.slider-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+/* Testimonial Item */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto; /* Center the testimonial */
+    transition: opacity 0.5s ease; /* Smooth transition effect */
+}
+
+/* Testimonial Text */
+.testimonial-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+/* Testimonial Name */
+.testimonial-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Arrow Controls */
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.arrow {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.arrow:hover {
+    color: #00acc1; /* Change color on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .slider-heading {
+        font-size: 2rem;
+    }
+
+    .testimonial-text {
+        font-size: 1rem;
+    }
+
+    .arrow {
+        font-size: 1.5rem;
+    }
+}

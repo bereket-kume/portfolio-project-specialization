@@ -1,0 +1,49 @@
+/* Styles for Community List and Items */
+
+.community-page {
+    padding: 20px;
+    text-align: center;
+    background-color: #f0f0f0;
+  }
+  
+  .community-search {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .community-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .community-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .community-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .community-item h2 {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .community-item p {
+    color: #666;
+  }
+  

@@ -7,9 +7,9 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { GetUser } from 'src/auth/guards/auth.decorator';
 
 @ApiTags("Community")
-@ApiBearerAuth()
+// @ApiBearerAuth()
 @Controller('community')
-@UseGuards(AuthGuard)  
+// @UseGuards(AuthGuard)  
 export class CommunityController {
     constructor(private readonly communityService: CommunityService) {}
 
