@@ -1,0 +1,69 @@
+/* Container for the entire profile - row direction */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto; /* Centers the container */
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row; /* Arrange children in a row */
+    gap: 20px; /* Add space between profile info and joined communities */
+    height: 500px;
+}
+
+/* Profile information (Name, Email) */
+.profile-info {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1; /* Make the profile section take available space */
+}
+
+.profile-info h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-info p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Joined communities section */
+.joined-communities {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1; /* Make the joined communities section take available space */
+}
+
+.joined-communities h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.joined-communities ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.joined-communities li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #555;
+}
+
+/* Add hover effect for community list items */
+.joined-communities li:hover {
+    background-color: #eaeaea;
+}

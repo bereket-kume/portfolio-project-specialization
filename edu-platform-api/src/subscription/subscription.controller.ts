@@ -1,4 +1,19 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
+import { SubscriptionService } from './subscription.service';
 
 @Controller('subscription')
-export class SubscriptionController {}
+export class SubscriptionController {
+  constructor(private readonly subscriptionService: SubscriptionService) {}
+
+  @Post('create-checkout-session')
+  async createCheckoutSession(@Body() body: { communityId: string, communityName: string, price: number }) {
+    const { communityId, communityName, price } = body;
+    
+    if (!communityId || !communityName || !price) {
+      throw new BadRequestException('Community ID, name, and price are required');
+    }
+
+    const sessionId = await this.subscriptionService.createCheckoutSession(communityId, communityName, price);
+    return { sessionId };
+  }
+}

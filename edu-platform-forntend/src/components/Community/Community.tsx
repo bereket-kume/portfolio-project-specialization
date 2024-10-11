@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import './styles/Community.css'; // Assuming you have some CSS styles
-import Header from "../Shared/Header";
-import Footer from "../Shared/Footer";
-import Testimonial from "../Shared/Testimonials";
+import { loadStripe } from "@stripe/stripe-js";
+import './styles/Community.css'; // Ensure this path is correct
+
+// Your Stripe public key
+const stripePromise = loadStripe("pk_test_51Q7WR407yXrbnphs2Yli0guMG4hgRU808Sqhdc58w4sF0mRZ8Nh7zg973YH2ZK32Xsnz3MgaTXE2xwtwEmgNjCPd00AwiW1G33");
 
 const Community = () => {
     const [communities, setCommunities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    // Fetch communities from the API
+    useEffect(() => {
+        fetchCommunities();
+    }, []);
+
     const fetchCommunities = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/community"); // Change to your API endpoint
+            const response = await axios.get("http://localhost:3000/community");
             setCommunities(response.data);
             setLoading(false);
         } catch (err) {
@@ -22,9 +26,36 @@ const Community = () => {
         }
     };
 
-    useEffect(() => {
-        fetchCommunities();
-    }, []);
+    const handlePremiumCheckout = async (communityId, communityName, price) => {
+        try {
+            const response = await axios.post("http://localhost:3000/subscription/create-checkout-session", {
+                communityId,
+                communityName,
+                price
+            });
+
+            const { sessionId } = response.data;
+            const stripe = await stripePromise;
+
+            const result = await stripe.redirectToCheckout({ sessionId });
+            if (result.error) {
+                console.error(result.error.message);
+            }
+        } catch (error) {
+            console.error("Checkout error:", error);
+        }
+    };
+
+    const handleJoinCommunity = async (communityId) => {
+        try {
+            const response = await axios.post(`http://localhost:3000/community/join/${communityId}`);
+            console.log("Joined community:", response.data);
+            alert("Successfully joined the community!");
+        } catch (error) {
+            console.error("Join community error:", error);
+            alert("Failed to join the community. Please try again.");
+        }
+    };
 
     if (loading) {
         return <div>Loading communities...</div>;
@@ -35,17 +66,6 @@ const Community = () => {
     }
 
     return (
-        <>
-        <Header />
-          
-        <section className="blur-bg-section">
-            <div className="blur-content">
-                <h2>Welcome to Our Community</h2>
-                <p>Join like-minded individuals and grow together in a space designed for collaboration and support.</p>
-                <a href="/signup" className="btn-primary">Join Now</a>
-            </div>
-        </section>
-
         <div className="community-container">
             {communities.length === 0 ? (
                 <p>No communities found.</p>
@@ -53,22 +73,31 @@ const Community = () => {
                 <ul className="community-list">
                     {communities.map((community) => (
                         <li key={community.id} className={`community-item ${community.isPremium ? 'premium' : 'free'}`}>
-                            {community.isPremium && (
-                                <div className="premium-label">Premium</div>
-                            )}
+                            {community.isPremium && <div className="premium-label">Premium</div>}
                             <h2>{community.name}</h2>
                             <p>{community.description}</p>
-                           {community.isPremium && (
-                            <h2>{`${community.price}$`}</h2>
-                           )}
+                            {community.isPremium && <h2>{`${community.price}$`}</h2>}
+
+                            {community.isPremium ? (
+                                <button 
+                                    className="checkout-btn"
+                                    onClick={() => handlePremiumCheckout(community.id, community.name, community.price)}
+                                >
+                                    Pay and Join
+                                </button>
+                            ) : (
+                                <button 
+                                    className="join-btn"
+                                    onClick={() => handleJoinCommunity(community.id)} 
+                                >
+                                    Join
+                                </button>
+                            )}
                         </li>
                     ))}
                 </ul>
             )}
         </div>
-        <Testimonial />
-        <Footer />
-        </>
     );
 };
 

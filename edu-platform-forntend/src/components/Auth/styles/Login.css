@@ -1,23 +1,24 @@
 /* Container for the login form */
 .login-container {
     max-width: 400px;
-    height: 500px;
-    margin: 100px auto;
-    padding: 20px;
-    background-color: #bbbace;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #2193b0, #6dd5ed); /* Adds a gradient background */
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 80px auto; /* Centers the container */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    color: white; /* Ensures text contrast on the gradient background */
 }
 
 /* Heading for the login form */
 .login-heading {
     text-align: center;
-    color: #333; /* Keeping this neutral */
-    font-size: 24px;
+    color: white;
+    font-size: 28px;
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 /* Form styling */
@@ -30,46 +31,83 @@
 .login-input {
     padding: 12px;
     margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    border-radius: 8px;
+    border: none;
     font-size: 16px;
-    transition: border-color 0.3s ease;
+    background-color: #f4f4f4;
+    color: #333;
+    transition: box-shadow 0.3s ease;
 }
 
 .login-input:focus {
-    border-color: #2193b0;
+    box-shadow: 0 0 5px rgba(33, 147, 176, 0.5);
     outline: none;
 }
 
 /* Button styling */
 .login-button {
-    padding: 12px;
-    background-color: #2193b0;
-    color: white;
+    padding: 14px;
+    background-color: #ffcc00; /* Bright and friendly color */
+    color: #333;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .login-button:hover {
-    background-color: #6dd5ed;
+    background-color: #ffdd33;
     transform: scale(1.05);
 }
 
 /* Error and success messages */
 .login-message {
-    display: block;
     margin-top: 15px;
     font-size: 14px;
+    text-align: center;
 }
 
 .login-error {
-    color: red;
+    color: #ff6b6b;
 }
 
 .login-success {
-    color: green;
+    color: #28a745;
+}
+
+/* Additional styles for better UX */
+.login-input::placeholder {
+    color: #999;
+}
+
+.login-container a {
+    text-align: center;
+    color: #fff;
+    margin-top: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-container a:hover {
+    color: #ffcc00;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .login-container {
+        max-width: 90%;
+        padding: 30px 20px;
+    }
+
+    .login-heading {
+        font-size: 24px;
+    }
+
+    .login-button {
+        font-size: 16px;
+    }
 }

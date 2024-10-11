@@ -7,9 +7,9 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { GetUser } from 'src/auth/guards/auth.decorator';
 
 @ApiTags("Community")
-// @ApiBearerAuth()
+@ApiBearerAuth()
+@UseGuards(AuthGuard)  
 @Controller('community')
-// @UseGuards(AuthGuard)  
 export class CommunityController {
     constructor(private readonly communityService: CommunityService) {}
 
@@ -34,16 +34,19 @@ export class CommunityController {
     }
 
     @Post('create')
+    @UseGuards(AuthGuard)  
     createCommunity(@Body() createCommunityDto: CreateCommunityDto, @GetUser() user) {
         return this.communityService.createCommunity(createCommunityDto, user.sub);
     }
 
     @Put(':id')
+    @UseGuards(AuthGuard)  
     updateCommunity(@Param('id') id: string, @Body() updateCommunityDto: UpdateCommunityDto) {
         return this.communityService.updateCommunity(id, updateCommunityDto);
     }
 
     @Delete(':id')
+    @UseGuards(AuthGuard)  
     deleteCommunity(@Param('id') id: string) {
         return this.communityService.deleteCommunity(id);
     }

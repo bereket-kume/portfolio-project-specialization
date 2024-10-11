@@ -1,0 +1,41 @@
+/* Main container for the failure page */
+.failure-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full height of the viewport */
+    background-color: #fee2e2; /* Light red background */
+}
+
+/* Error message heading */
+.failure-title {
+    font-size: 3rem; /* Large font size */
+    font-weight: bold;
+    color: #b91c1c; /* Dark red color */
+}
+
+/* Error message paragraph */
+.failure-message {
+    margin-top: 1rem; /* Margin above the paragraph */
+    font-size: 1.25rem; /* Slightly larger font size */
+    color: #7f1d1d; /* A different shade of red */
+}
+
+/* Button styling */
+.failure-button {
+    margin-top: 1.5rem; /* Margin above the button */
+    padding: 0.75rem 1.5rem; /* Padding inside the button */
+    background-color: #b91c1c; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius: 0.375rem; /* Rounded corners */
+    font-size: 1rem; /* Font size for button text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Button hover effect */
+.failure-button:hover {
+    background-color: #991b1b; /* Darker shade on hover */
+}

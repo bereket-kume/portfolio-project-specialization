@@ -1,13 +1,13 @@
-import React from 'react';
 import './style/homePage.css';
 import Footer from '../components/Shared/Footer';
 import Header from '../components/Shared/Header';
-import Login from '../components/Auth/Login';
+import Community from '../components/Community/Community';
+import TestimonialSlider from '../components/Shared/Testimonials';
 
 const HomePage = () => {
     return (
         <>
-        <Header />
+        
         <div className="bg-gray-50">
             {/* Hero Section */}
             <section className="hero-section">
@@ -36,7 +36,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
-   
+        <Community />
 <section className="blur-bg-section">
     <div className="blur-content">
         <h2>Welcome to Our Community</h2>
@@ -84,7 +84,7 @@ const HomePage = () => {
 
             {/* Features Section */}
            
-
+        <TestimonialSlider />
             {/* CTA Section */}
             <section className="cta-section">
                 <div className="container">
@@ -94,7 +94,7 @@ const HomePage = () => {
                 </div>
             </section>
         </div>
-        <Footer />
+       
         </>
     );
 };

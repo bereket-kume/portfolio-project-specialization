@@ -68,3 +68,43 @@
 .login-btn:hover {
     background-color: #1d4ed8;
 }
+
+/* Header Right Container */
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Profile Circle */
+.profile-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e2e9; /* Border for the profile circle */
+    margin-left: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-circle:hover {
+    transform: scale(1.1);
+    border-color: #1d4ed8; /* Darker blue on hover */
+}
+
+/* Sign Out Button */
+.signout-btn {
+    background-color: #ff4b4b; /* Red background for sign out */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 20px; /* Space between profile circle and sign out button */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.signout-btn:hover {
+    background-color: #ff6b6b; /* Lighter red on hover */
+}

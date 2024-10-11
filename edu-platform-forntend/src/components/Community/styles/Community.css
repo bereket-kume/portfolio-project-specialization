@@ -1,135 +1,130 @@
-/* Main container for the entire component */
+/* Main container for the entire community section */
 .community-container {
-    max-width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 30px; /* Increased padding for a spacious look */
-    background-color: #fafafa; /* Slightly lighter background for a fresher feel */
-    border-radius: 16px; /* Slightly larger corner radius */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Softer, larger shadow */
-}
-
-/* Heading */
-.community-heading {
+    padding: 60px 30px;
+    background-color: #f7f7f7;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    font-size: 2.8rem; /* Larger, more prominent heading */
-    font-weight: 700; /* Heavier font-weight for stronger impact */
-    color: #222;
-    margin-bottom: 50px;
-    text-transform: uppercase;
-    letter-spacing: 3px; /* Extra spacing for elegance */
-    line-height: 1.3; /* Better line height */
 }
 
-/* List container */
+/* Styling for 'No communities found' message */
+.community-container p {
+    font-size: 1.5rem;
+    color: #555;
+    padding: 40px;
+}
+
+/* List of communities */
 .community-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two-column layout for wider screens */
-    gap: 50px; /* More gap between cards */
+    list-style-type: none;
     padding: 0;
-    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
 }
 
-/* Community card base style */
+/* Each community item/card */
 .community-item {
-    border-radius: 20px; /* Larger border radius for modern look */
-    padding: 40px; /* More padding for better content spacing */
-    background-color: white;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Softer shadow */
-    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smoother, longer hover transition */
-    text-align: center;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
-    cursor: pointer;
-    height: 450px; /* Bigger cards */
-    max-width: 450px;
-    margin: auto; /* Centers the cards */
 }
 
-/* Hover effect on community card */
 .community-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Larger shadow on hover */
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Premium community style */
-.premium {
-    border: 3px solid #f5c518; /* Golden premium border, slightly thicker */
-    background-color: #fffdf7; /* Subtle premium background */
-}
-
-/* Free community style */
-.free {
-    border: 3px solid #00acc1; /* A modern, vibrant teal border */
-    background-color: #f4faff; /* Soft, free background */
-}
-
-/* Community name style */
-.community-item h2 {
-    font-size: 2.2rem; /* Larger name text */
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #333;
-    letter-spacing: 1.5px; /* Subtle spacing */
-}
-
-/* Community description style */
-.community-item p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: #666;
-    padding: 0 10px; /* Add some padding for the text */
-}
-
-/* Premium label style */
+/* Premium community label */
 .premium-label {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: gold;
+    top: 10px;
+    left: 10px;
+    background-color: #ffbf00;
     color: white;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+/* Premium community styling */
+.premium {
+    border: 2px solid #f5a623;
+    background-color: #fffdf2;
+}
+
+/* Free community styling */
+.free {
+    border: 2px solid #00aaff;
+    background-color: #f4faff;
+}
+
+/* Community title */
+.community-item h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Community description */
+.community-item p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Price for premium communities */
+.community-item h2 {
+    color: #f00;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+/* Checkout button for premium communities */
+.checkout-btn {
+    background-color: #ff6f00;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
     font-size: 1rem;
     font-weight: bold;
-    padding: 8px 14px; /* Slightly bigger padding */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #e65c00;
+}
+
+/* Join button for free communities */
+.join-btn {
+    background-color: #00aaff;
+    color: white;
+    padding: 12px 24px;
     border-radius: 6px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease;
 }
 
-/* Loading and error messages */
-.loading, .error {
-    text-align: center;
-    font-size: 1.6rem;
-    color: #777;
-    padding: 30px;
+.join-btn:hover {
+    background-color: #008fd4;
 }
 
-/* Responsive media queries */
-@media (max-width: 1024px) {
-    .community-list {
-        grid-template-columns: 1fr; /* One column layout for tablets */
-        gap: 40px;
-    }
-
-    .community-item {
-        max-width: 90%; /* Make sure it adjusts to screen */
-    }
-}
-
+/* Responsive design */
 @media (max-width: 768px) {
-    .community-container {
-        padding: 30px;
-    }
-    .community-heading {
-        font-size: 2.2rem;
-        margin-bottom: 30px;
-    }
-    .community-item {
-        padding: 25px;
-    }
-    .community-item h2 {
-        font-size: 1.8rem;
-    }
-    .community-item p {
-        font-size: 1rem;
+    .community-list {
+        grid-template-columns: 1fr;
     }
 }

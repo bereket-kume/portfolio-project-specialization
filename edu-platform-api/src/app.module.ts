@@ -7,9 +7,20 @@ import { UserModule } from './user/user.module';
 import { AnnouncementsModule } from './announcements/announcements.module';
 import { CommunityModule } from './community/community.module';
 import { SubscriptionModule } from './subscription/subscription.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [AuthModule, RedisModule, UserModule, AnnouncementsModule, CommunityModule, SubscriptionModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    AuthModule, 
+    RedisModule, 
+    UserModule, 
+    AnnouncementsModule, 
+    CommunityModule, 
+    SubscriptionModule
+  ],
   controllers: [],
   providers: [AppService, PrismaService],
 })

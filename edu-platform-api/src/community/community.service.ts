@@ -55,13 +55,15 @@ export class CommunityService {
     }
 
     async deleteCommunity(id: string) {
-        const community = await this.prisma.community.delete({
+        await this.prisma.userCommunity.deleteMany({
+            where: {
+                communityId: id,
+            }
+        })
+        await this.prisma.community.delete({
             where: { id },
         });
 
-        if (!community) {
-            throw new NotFoundException(`Community with ID ${id} not found for deletion.`);
-        }
 
         return { message: "Community deleted successfully" };
     }
