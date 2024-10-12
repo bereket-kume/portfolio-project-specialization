@@ -10,11 +10,15 @@ async function bootstrap() {
     allowedHeaders: 'Content-Type, Authorization',
   })
   const config = new DocumentBuilder()
-    .setTitle("Edu Platform Api")
-    .setDescription("Backend Api")
+    .setTitle("Backend")
+    .setDescription("The backend API for the Community Platform")
     .setVersion('1.0')
-    .addTag("edu")
-    .addBearerAuth()
+    .addTag("API")
+    .addBearerAuth({
+      type: 'http', scheme: 'bearer', bearerFormat: 'JWT'
+    },
+    'JWT-auth'
+  )
     .build()
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

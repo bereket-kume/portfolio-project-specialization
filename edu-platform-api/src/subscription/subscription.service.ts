@@ -11,7 +11,7 @@ export class SubscriptionService {
   }
 
   async createCheckoutSession(communityId: string, communityName: string, price: number): Promise<string> {
-    const successUrl = `${this.configService.get<string>('FRONTEND_URL')}/success`;
+    const successUrl = `${this.configService.get<string>('FRONTEND_URL')}/success?session_id={CHECKOUT_SESSION_ID}&communityId=${communityId}`;
     const cancelUrl = `${this.configService.get<string>('FRONTEND_URL')}/cancel`;
 
     const session = await this.stripe.checkout.sessions.create({
@@ -23,7 +23,7 @@ export class SubscriptionService {
             product_data: {
               name: communityName,
             },
-            unit_amount: price * 100, // Convert dollars to cents
+            unit_amount: price * 100,
           },
           quantity: 1,
         },

@@ -1,0 +1,105 @@
+/* CommunityDetail Styles */
+.community-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .community-info {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .community-info h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+  }
+  
+  .community-info p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-top: 10px;
+  }
+  
+  .prem-label {
+    display: inline-block;
+    background-color: #f1c40f;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    
+  }
+  
+  .announcements-section {
+    margin-bottom: 40px;
+  }
+  
+  .announcements-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #34495e;
+  }
+  
+  .announcement-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .announcement-item {
+    background-color: #ecf0f1;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .announcement-item p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  
+  .announcement-item small {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+  }
+  
+  /* Additional Section */
+  .additional-section {
+    margin-top: 40px;
+  }
+  
+  .additional-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #34495e;
+  }
+  
+  .members-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .members-list li {
+    background-color: #bdc3c7;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    color: #2c3e50;
+    font-weight: bold;
+  }
+  
+  /* Responsive Design */
+  @media only screen and (max-width: 768px) {
+    .community-info h1 {
+      font-size: 2rem;
+    }
+  
+    .announcements-section h2,
+    .additional-section h2 {
+      font-size: 1.5rem;
+    }
+  }
+  

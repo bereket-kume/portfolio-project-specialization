@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
-import './styles/Community.css'; // Ensure this path is correct
+import './styles/Community.css';
 
-// Your Stripe public key
 const stripePromise = loadStripe("pk_test_51Q7WR407yXrbnphs2Yli0guMG4hgRU808Sqhdc58w4sF0mRZ8Nh7zg973YH2ZK32Xsnz3MgaTXE2xwtwEmgNjCPd00AwiW1G33");
 
 const Community = () => {
@@ -33,22 +32,31 @@ const Community = () => {
                 communityName,
                 price
             });
-
+    
             const { sessionId } = response.data;
             const stripe = await stripePromise;
-
+    
             const result = await stripe.redirectToCheckout({ sessionId });
             if (result.error) {
                 console.error(result.error.message);
+            } else {
+                console.log("Redirecting to Stripe Checkout...");
             }
         } catch (error) {
             console.error("Checkout error:", error);
         }
     };
+    
 
     const handleJoinCommunity = async (communityId) => {
+        const token = localStorage.getItem("access_token");
         try {
-            const response = await axios.post(`http://localhost:3000/community/join/${communityId}`);
+            const response = await axios.post(`http://localhost:3000/community/join/${communityId}`,
+                {}
+                ,{
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }});
             console.log("Joined community:", response.data);
             alert("Successfully joined the community!");
         } catch (error) {

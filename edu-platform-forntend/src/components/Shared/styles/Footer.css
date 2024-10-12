@@ -3,13 +3,18 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
 }
 
-/* Main container of the page, excluding the footer */
+/* Flex container for the entire page */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body covers the entire viewport height */
+}
+
+/* Main content of the page, taking up remaining space */
 .main-content {
-    flex: 1; /* Take up the remaining space */
+    flex: 1; /* This ensures the main content takes up the remaining space */
     padding: 20px;
 }
 
@@ -19,8 +24,6 @@ html, body {
     color: white;
     padding: 20px 0;
     text-align: center;
-    position: relative;
-    bottom: 0;
     width: 100%;
 }
 

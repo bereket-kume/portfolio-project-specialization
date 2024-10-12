@@ -31,9 +31,32 @@ export class UserService {
         });
     }
 
-    async deleteUser(id: string): Promise<User> {
-        return this.prisma.user.delete({
-            where: { id },
+    async deleteUser(userId: string) {
+        await this.prisma.userCommunity.deleteMany({
+            where: {
+                userId: userId,
+            },
+        });
+
+        // Step 2: Delete all announcements created by the user
+        await this.prisma.announcement.deleteMany({
+            where: {
+                creatorId: userId,
+            },
+        });
+
+        // Step 3: Delete all payments made by the user
+        await this.prisma.payment.deleteMany({
+            where: {
+                userId: userId,
+            },
+        });
+
+        // Step 4: Delete the user
+        await this.prisma.user.delete({
+            where: {
+                id: userId,
+            },
         });
     }
 

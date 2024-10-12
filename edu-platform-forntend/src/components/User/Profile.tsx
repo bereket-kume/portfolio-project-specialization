@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './profile/styles.css'
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     const [userProfile, setUserProfile] = useState(null);
@@ -46,9 +47,13 @@ const Profile = () => {
                 <h2>Joined Communities:</h2>
                 <ul>
                     {userProfile.joinedCommunities.length > 0 ? (
-                        userProfile.joinedCommunities.map((community) => (
-                            <li key={community.id}>{community.name}</li>
-                        ))
+                        <ul>
+                        {userProfile.joinedCommunities.map((community) => (
+                          <li key={community.id}>
+                            <Link to={`/community/${community.id}`}>{community.name}</Link>
+                          </li>
+                        ))}
+                      </ul>
                     ) : (
                         <li>No communities joined yet.</li>
                     )}

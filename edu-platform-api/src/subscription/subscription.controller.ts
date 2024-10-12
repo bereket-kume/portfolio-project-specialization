@@ -1,6 +1,8 @@
 import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
 import { SubscriptionService } from './subscription.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Payment')
 @Controller('subscription')
 export class SubscriptionController {
   constructor(private readonly subscriptionService: SubscriptionService) {}
