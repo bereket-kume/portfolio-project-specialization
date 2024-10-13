@@ -64,4 +64,10 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
+
+  async whoami(userId: string) {
+    return this.prismaService.user.findUnique({
+      where: { id: userId }
+    })
+  }
 }

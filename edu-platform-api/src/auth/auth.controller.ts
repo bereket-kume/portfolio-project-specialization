@@ -1,8 +1,12 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { GetUser } from './guards/auth.decorator';
+import { AuthGuard } from './guards/auth.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
+
 
 
 @ApiTags("Auth")
@@ -24,6 +28,13 @@ export class AuthController {
     @ApiResponse({ status: 401, description: 'Unauthorized' })
     async login(@Body() loginDto: LoginDto) {
         return this.authService.login(loginDto)
+    }
+
+    @UseGuards(AuthGuard)
+    @ApiBearerAuth()
+    @Get('/whoami')
+    whoami(@GetUser() user){
+        return  this.authService.whoami(user.sub)
     }
 }
 
