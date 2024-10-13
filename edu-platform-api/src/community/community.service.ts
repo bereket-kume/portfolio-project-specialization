@@ -24,6 +24,24 @@ export class CommunityService {
         return community;
     }
 
+    async getCommunityMembers(id: string) {
+        const community = await this.prisma.community.findUnique({
+            where: {id },
+            include: { members: {
+                select: {
+                    user: {
+                        select: {
+                            name: true,
+                            email: true
+                        }
+                    }
+                }
+            } }
+        })
+    
+        return community.members;
+    }
+
     async createCommunity(createCommunityDto: CreateCommunityDto, creatorId: string) {
         return this.prisma.community.create({
             data: {

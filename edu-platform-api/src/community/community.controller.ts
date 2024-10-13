@@ -23,6 +23,11 @@ export class CommunityController {
         return this.communityService.getAllCommunityByID(id);
     }
 
+    @Get(':id/members')
+    getCommunityMembers(@Param('id') id:string){
+        return this.communityService.getCommunityMembers(id)
+    }
+
     @Get('premium')
     getPremiumCommunities() {
         return this.communityService.getCommunitiesByPremiumStatus(true);
