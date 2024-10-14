@@ -8,7 +8,7 @@ const CommunityAdmin = () => {
   const { communityId } = useParams();
   const [community, setCommunity] = useState(null);
   const [announcements, setAnnouncements] = useState([]);
-  const [members, setMembers] = useState([]);  // New state for members
+  const [members, setMembers] = useState([]);
   const [newAnnouncement, setNewAnnouncement] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -17,10 +17,9 @@ const CommunityAdmin = () => {
   useEffect(() => {
     fetchCommunityDetails();
     fetchCommunityAnnouncements();
-    fetchCommunityMembers(); // Fetch members
+    fetchCommunityMembers();
   }, [communityId]);
 
-  // Fetch community details
   const fetchCommunityDetails = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/community/${communityId}`);
@@ -32,7 +31,6 @@ const CommunityAdmin = () => {
     }
   };
 
-  // Fetch community announcements
   const fetchCommunityAnnouncements = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/announcements?communityId=${communityId}`);
@@ -60,7 +58,7 @@ const CommunityAdmin = () => {
     setError("");
     setSuccess("");
     try {
-      const response = await axios.post(`http://localhost:3000/announcements`, {
+      const response = await axios.post(`http://localhost:3000/announcements/create`, {
         communityId,
         content: newAnnouncement,
         creatorName: "Admin", 

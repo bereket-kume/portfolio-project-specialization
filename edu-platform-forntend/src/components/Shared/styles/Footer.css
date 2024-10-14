@@ -1,16 +1,4 @@
-/* Ensure the body takes the full height of the viewport */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
 
-/* Flex container for the entire page */
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensure the body covers the entire viewport height */
-}
 
 /* Main content of the page, taking up remaining space */
 .main-content {
@@ -25,6 +13,7 @@ body {
     padding: 20px 0;
     text-align: center;
     width: 100%;
+   
     
 }
 

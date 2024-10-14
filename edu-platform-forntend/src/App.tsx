@@ -31,11 +31,10 @@ function App() {
           <Route path="/cancel" element={<FailurePage />} />
           <Route path="/community/:communityId" element={<CommunityDetail />} />
           <Route path="/admin" element={<AdminPage />} />
-          <Route path="/createCommunity" element={<CreateCommunity />} />
-          <Route path='/view-communities' element={<ViewCommunities />} />
+          <Route path="admin/createCommunity" element={<CreateCommunity />} />
+          <Route path='admin/view-communities' element={<ViewCommunities />} />
           <Route path="/community/:communityId/admin" element={<CommunityAdmin />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }

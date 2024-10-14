@@ -94,7 +94,7 @@ const HomePage = () => {
                 </div>
             </section>
         </div>
-       
+       <Footer />
         </>
     );
 };

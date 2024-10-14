@@ -1,8 +1,17 @@
 .admin-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+  display: flex; /* This ensures both inner divs are in the same line */
+  justify-content: center; /* Aligns the items horizontally in the center */
+  align-items: center; /* Vertically aligns the items */
+  gap: 20px; /* Adds some space between the charts */
+}
+
+.chart-container {
+  flex: 1; 
+  max-width: 600px; /* Adjust as needed */
+  height: 400px; /* Set the height for each chart */
+  padding: 20px;
+}
+
   
   h1 {
     font-size: 2.5rem;
@@ -74,3 +83,63 @@
     background-color: #c0392b;
   }
   
+  .admin-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; /* Spread the items horizontally */
+    align-items: flex-start; /* Align items at the top */
+    gap: 20px; /* Add spacing between the items */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .admin-banner {
+    background-color: #3498db; /* Blue background */
+    color: white;              /* White text */
+    text-align: center;         /* Center the text */
+    padding: 50px 20px;         /* Add space around the text */
+    font-size: 2.5rem;          /* Large font size */
+    font-weight: bold;          /* Bold text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for effect */
+    
+  }
+  
+  @media (max-width: 768px) {
+    .admin-banner {
+      font-size: 1.8rem;  /* Adjust font size for smaller screens */
+      padding: 30px 10px; /* Adjust padding for smaller screens */
+    }
+  }
+  
+  .admin-banner {
+    background-color: #2c3e50; /* Blue background */
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-sub-banner {
+  background-color: #2c3e50; /* Darker background for contrast */
+  color: #ecf0f1;            /* Light text color */
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 2rem;
+  font-weight: normal;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .admin-banner {
+    font-size: 1.8rem;
+    padding: 30px 10px;
+  }
+
+  .admin-sub-banner {
+    font-size: 1.5rem;
+    padding: 20px 10px;
+  }
+}

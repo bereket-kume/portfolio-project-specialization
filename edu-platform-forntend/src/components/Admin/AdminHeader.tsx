@@ -1,8 +1,9 @@
+// AdminHeader.js
 import React from 'react';
 import './styles/adminHeader.css'; 
 import { Link, useNavigate } from 'react-router-dom';
 
-const AdminHeader = ({ user, setUser}) => {
+const AdminHeader = ({ user, setUser }) => {
   const navigate = useNavigate();
 
   const signOut = () => {
@@ -12,25 +13,40 @@ const AdminHeader = ({ user, setUser}) => {
   };
 
   return (
-    <aside className="admin-sidebar open"> {/* Sidebar is always open */}
-      <div className="admin-sidebar-title">
-        <h1>MENU</h1>
+    <header className="admin-header">
+      <div >
+
+      <section className="admin-banner">
+        <h1>We are here to connect the community</h1>
+      </section>
+      <section className="admin-sub-banner">
+        <h2>Take control of your community with real-time insights and data management</h2>
+      </section>
       </div>
-      <nav>
-        <ul className="admin-sidebar-menu">
-          <li>
-            <Link to='/createCommunity'>Create Community</Link>
-          </li>
-          <li>
-            <Link to='/view-communities'>View Communities</Link>
-          </li>
-          <li>
-            <Link to='/manage-users'>Manage Users</Link>
-          </li>
-          <button className="signout-btn" onClick={signOut}>Sign out</button>
-        </ul>
-      </nav>
-    </aside>
+      
+      <aside className="admin-sidebar open"> {/* Sidebar is always open */}
+        <div className="admin-sidebar-title">
+          <h1>MENU</h1>
+        </div>
+        <nav>
+          <ul className="admin-sidebar-menu">
+            <li>
+              <Link to='/admin'>Home</Link>
+            </li>
+            <li>
+              <Link to='/admin/createCommunity'>Create Community</Link>
+            </li>
+            <li>
+              <Link to='/admin/view-communities'>View Communities</Link>
+            </li>
+            <li>
+              <Link to='/admin/manage-users'>Manage Users</Link>
+            </li>
+            <button className="signout-btn" onClick={signOut}>Sign out</button>
+          </ul>
+        </nav>
+      </aside>
+    </header>
   );
 };
 
