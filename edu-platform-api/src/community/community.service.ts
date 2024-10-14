@@ -73,19 +73,26 @@ export class CommunityService {
     }
 
     async deleteCommunity(id: string) {
-        await this.prisma.userCommunity.deleteMany({
-            where: {
-                communityId: id,
-            }
-        })
-        await this.prisma.community.delete({
-            where: { id },
+        // Check if community exists
+        const community = await this.prisma.community.findUnique({ where: { id } });
+        
+        if (!community) {
+          throw new Error('Community not found');
+        }
+      
+        // Delete related announcements
+        await this.prisma.announcement.deleteMany({
+          where: { communityId: id },
         });
-
-
-        return { message: "Community deleted successfully" };
-    }
-
+      
+        // Finally, delete the community
+        await this.prisma.community.delete({
+          where: { id },
+        });
+      
+        return { message: 'Community deleted successfully' };
+      }
+      
     async getCommunitiesByPremiumStatus(isPremium: boolean): Promise<Community[]> {
         return this.prisma.community.findMany({
             where: {

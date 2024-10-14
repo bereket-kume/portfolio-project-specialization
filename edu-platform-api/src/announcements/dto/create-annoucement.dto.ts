@@ -11,5 +11,5 @@ export class CreateAnnouncementDto {
 
   @IsNotEmpty()
   @IsString()
-  creatorId: string;
+  creatorID: string;
 }

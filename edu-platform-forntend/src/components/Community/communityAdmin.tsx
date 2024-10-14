@@ -33,7 +33,7 @@ const CommunityAdmin = () => {
 
   const fetchCommunityAnnouncements = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/announcements?communityId=${communityId}`);
+      const response = await axios.get(`http://localhost:3000/announcements/community/${communityId}`);
       setAnnouncements(response.data);
     } catch (err) {
       setError("Error fetching community announcements.");
@@ -61,7 +61,7 @@ const CommunityAdmin = () => {
       const response = await axios.post(`http://localhost:3000/announcements/create`, {
         communityId,
         content: newAnnouncement,
-        creatorName: "Admin", 
+        creatorID: "670ccd2ef256a97d3bbcf354",
       });
       if (response.status === 201) {
         setSuccess("Announcement posted successfully.");

@@ -44,19 +44,28 @@ export class AnnouncementsService {
     }
     
     async createAnnouncements(createAnnoucementsdto: CreateAnnouncementDto) {
-        const { content, communityId, creatorId} = createAnnoucementsdto
+        const { content, communityId, creatorID } = createAnnoucementsdto;
+        console.log(createAnnoucementsdto)
+        if (!creatorID) {
+          throw new Error("Creator ID must be provided.");
+        }
+      
         return this.prisma.announcement.create({
-            data: {
-                content,
-                community: {
-                    connect: { id: communityId }
-                },
-                creator: {
-                    connect: { id: creatorId }
-                }
+          data: {
+            content: content,
+            community: {
+              connect: {
+                id: communityId,
+              }
             },
-        })
-
-    }
+            creator: {
+              connect: {
+                id: creatorID, // Ensure this is valid
+              }
+            }
+          }
+        });
+      }
+      
 
 }

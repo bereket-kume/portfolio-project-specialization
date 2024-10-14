@@ -39,9 +39,7 @@ const AdminHeader = ({ user, setUser }) => {
             <li>
               <Link to='/admin/view-communities'>View Communities</Link>
             </li>
-            <li>
-              <Link to='/admin/manage-users'>Manage Users</Link>
-            </li>
+           
             <button className="signout-btn" onClick={signOut}>Sign out</button>
           </ul>
         </nav>
