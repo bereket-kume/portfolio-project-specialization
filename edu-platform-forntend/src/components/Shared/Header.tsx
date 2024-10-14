@@ -1,26 +1,29 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './styles/Header.css';
+import AdminHeader from '../Admin/AdminHeader';
 
 const Header = ({ user, setUser }) => {
     const navigate = useNavigate();
 
     const signOut = () => {
-        // Clear authentication token or user session here
         localStorage.removeItem('authToken');
         setUser(false);
-         // Example: clear auth token from localStorage
-        navigate('/'); // Redirect to login page after sign-out
+        navigate('/');
     };
+
+    // Ensure user exists before checking the role
+    if (user && user.role === 'ADMIN') {
+        return <AdminHeader user={user} setUser={setUser} />;
+    }
 
     return (
         <header className="header">
             <div className="container">
-                <h1 className="logo">My Awesome Platform</h1>
+                <h1 className="logo"></h1>
                 <nav className="nav">
                     <ul>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/about">About</Link></li>
-                        <Link to="/community" className="community-btn">Community</Link>
                         <li><Link to="/contact">Contact</Link></li>
                     </ul>
 

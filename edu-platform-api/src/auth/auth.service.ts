@@ -38,7 +38,7 @@ export class AuthService {
     return user;
   }
 
-  async login(loginDto: LoginDto): Promise<{ access_token: string }> {
+  async login(loginDto: LoginDto){
     const { email, password } = loginDto;
 
     const user = await this.prismaService.user.findUnique({
@@ -53,8 +53,12 @@ export class AuthService {
     if (!passwordMatches) {
       throw new UnauthorizedException('Invalid credentials');
     }
+    const access_token = this.generateToken(user)
 
-    return this.generateToken(user);
+    return {
+      access_token,
+      role: user.role
+    };
   }
 
   private generateToken(user: User): { access_token: string } {

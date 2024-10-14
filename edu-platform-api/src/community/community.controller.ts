@@ -52,8 +52,7 @@ export class CommunityController {
         return this.communityService.updateCommunity(id, updateCommunityDto);
     }
 
-    @Delete(':id')
-    
+    @Delete(':id/delete')
     deleteCommunity(@Param('id') id: string) {
         return this.communityService.deleteCommunity(id);
     }

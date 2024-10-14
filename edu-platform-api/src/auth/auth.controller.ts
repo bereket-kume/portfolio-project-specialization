@@ -30,10 +30,11 @@ export class AuthController {
         return this.authService.login(loginDto)
     }
 
-    @UseGuards(AuthGuard)
-    @ApiBearerAuth()
+   
     @Get('/whoami')
-    whoami(@GetUser() user){
+    @UseGuards(AuthGuard)
+    @ApiBearerAuth('JWT-auth')
+    whoami(@GetUser() user: any){
         return  this.authService.whoami(user.sub)
     }
 }

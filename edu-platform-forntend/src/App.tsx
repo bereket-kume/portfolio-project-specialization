@@ -10,8 +10,10 @@ import Profile from './components/User/Profile';
 import SuccessPage from './pages/SuccessPage';
 import FailurePage from './pages/FailurePage';
 import CommunityDetail from './components/Community/CommunityDetail';
-
-
+import AdminPage from './components/Admin/AdminPage';
+import CreateCommunity from './components/Community/CreateCommunity';
+import ViewCommunities from './components/Community/ViewCommunities';
+import CommunityAdmin from './components/Community/communityAdmin';
 function App() {
   const [user, setUser] = useState(null);
 
@@ -27,7 +29,11 @@ function App() {
           <Route path='/signup' element={<Registration />} />
           <Route path="/success" element={<SuccessPage />}/>
           <Route path="/cancel" element={<FailurePage />} />
-          <Route path="/community/:communityId" Component={CommunityDetail} />
+          <Route path="/community/:communityId" element={<CommunityDetail />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/createCommunity" element={<CreateCommunity />} />
+          <Route path='/view-communities' element={<ViewCommunities />} />
+          <Route path="/community/:communityId/admin" element={<CommunityAdmin />} />
       </Routes>
       <Footer />
     </Router>
