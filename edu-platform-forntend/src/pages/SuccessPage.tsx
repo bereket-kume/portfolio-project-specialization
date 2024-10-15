@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import './style/successPage.css'
 
 const SuccessPage = () => {
     const location = useLocation();
 
-    // Function to extract query parameters
     const getQueryParams = () => {
         return new URLSearchParams(location.search);
     };
@@ -13,7 +13,7 @@ const SuccessPage = () => {
     useEffect(() => {
         const queryParams = getQueryParams();
         const sessionId = queryParams.get("session_id");
-        const communityId = queryParams.get("communityId"); // Pass communityId in success URL
+        const communityId = queryParams.get("communityId");
 
         if (sessionId && communityId) {
             joinCommunity(communityId);

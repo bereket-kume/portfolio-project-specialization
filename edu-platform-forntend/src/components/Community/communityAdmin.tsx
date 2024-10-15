@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import './styles/communityAdmin.css';
-import AdminHeader from "../Admin/AdminHeader";
 
 const CommunityAdmin = () => {
   const { communityId } = useParams();
