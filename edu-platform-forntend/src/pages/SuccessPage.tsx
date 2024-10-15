@@ -22,7 +22,7 @@ const SuccessPage = () => {
         console.log("no")
     }, [location]);
 
-    const joinCommunity = async (communityId) => {
+    const joinCommunity = async (communityId: string) => {
         const token = localStorage.getItem("access_token");
         try {
             const response = await axios.post(`http://localhost:3000/community/join/${communityId}`, {}, {

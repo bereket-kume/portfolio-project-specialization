@@ -73,19 +73,16 @@ export class CommunityService {
     }
 
     async deleteCommunity(id: string) {
-        // Check if community exists
         const community = await this.prisma.community.findUnique({ where: { id } });
         
         if (!community) {
           throw new Error('Community not found');
         }
       
-        // Delete related announcements
         await this.prisma.announcement.deleteMany({
           where: { communityId: id },
         });
       
-        // Finally, delete the community
         await this.prisma.community.delete({
           where: { id },
         });
