@@ -38,7 +38,7 @@ To get a local copy of this project up and running, follow these steps.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/connect-space.git
+   git clone https://github.com/bereket-kume/portfolio-project-specialization
    cd connect-space
 
     Navigate to the backend directory:
@@ -83,14 +83,14 @@ bash
     cd ../edu-platform-frontend
     npm start
 
-    Open your web browser and navigate to http://localhost:3000 to view the application.
+    Open your web browser and navigate to http://localhost:5173 to view the application.
 
 API Documentation
 
 The backend API is documented with Swagger. To access the documentation:
 
     Start the backend server.
-    Navigate to http://localhost:5000/api-docs in your browser.
+    Navigate to http://localhost:3000/api in your browser.
 
 Future Enhancements
 
