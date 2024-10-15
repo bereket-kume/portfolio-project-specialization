@@ -92,23 +92,6 @@ The backend API is documented with Swagger. To access the documentation:
     Start the backend server.
     Navigate to http://localhost:3000/api in your browser.
 
-Future Enhancements
-
-    User registration and profile management.
-    Role-based access control for better security.
-    Scheduling meetings and sending emails to community members.
-    Improved frontend design for a better user experience.
-
-Lessons Learned
-
-    Successfully integrated a third-party service (Stripe) with the application.
-    Gained experience in iterative development and agile methodologies.
-    Importance of defining clear requirements before starting development.
-
-Contributing
-
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
-License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
