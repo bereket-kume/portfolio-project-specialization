@@ -5,9 +5,9 @@ import './styles/communityAdmin.css';
 
 const CommunityAdmin = () => {
   const { communityId } = useParams();
-  const [community, setCommunity] = useState(null);
-  const [announcements, setAnnouncements] = useState([]);
-  const [members, setMembers] = useState([]);
+  const [community, setCommunity] = useState<{ name: string, description: string, isPremium: boolean } | null>(null);
+  const [announcements, setAnnouncements] = useState<{ id: string, content: string, creatorName: string }[]>([]);
+  const [members, setMembers] = useState<{ id: string, user: { name: string, email: string } }[]>([]);
   const [newAnnouncement, setNewAnnouncement] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -48,11 +48,11 @@ const CommunityAdmin = () => {
     }
   };
 
-  const handleAnnouncementChange = (e) => {
+  const handleAnnouncementChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setNewAnnouncement(e.target.value);
   };
 
-  const submitAnnouncement = async (e) => {
+  const submitAnnouncement = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setError("");
     setSuccess("");
@@ -112,7 +112,7 @@ const CommunityAdmin = () => {
             value={newAnnouncement}
             onChange={handleAnnouncementChange}
             placeholder="Write your announcement..."
-            rows="4"
+            rows={4}
             required
           />
           <button type="submit">Post Announcement</button>

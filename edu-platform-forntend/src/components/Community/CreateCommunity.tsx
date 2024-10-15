@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
 import './styles/createCommunity.css';
-import AdminHeader from '../Admin/AdminHeader';
 
 const CreateCommunity = () => {
   const [name, setName] = useState('');
@@ -13,7 +12,7 @@ const CreateCommunity = () => {
 
   const token = localStorage.getItem('access_token'); 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setLoading(true);
     setMessage('');

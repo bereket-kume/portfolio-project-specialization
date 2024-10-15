@@ -3,9 +3,10 @@ import axios from 'axios';
 import './styles/viewCommunities.css';
 import AdminHeader from '../Admin/AdminHeader';
 import { Link } from 'react-router-dom';
+import Community from './Community';
 
 const ViewCommunities = () => {
-  const [communities, setCommunities] = useState([]);
+  const [communities, setCommunities] = useState<Community[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -24,15 +25,15 @@ const ViewCommunities = () => {
     }
   };
 
-  const deleteCommunity = async (id) => {
+  const deleteCommunity = async (id: any) => {
     const confirmed = window.confirm('Are you sure you want to delete this community?');
-    if (!confirmed) return; // Exit if not confirmed
+    if (!confirmed) return; 
 
     try {
       await axios.delete(`http://localhost:3000/community/${id}/delete`);
-      fetchCommunities(); // Refresh the community list after deletion
+      fetchCommunities(); 
     } catch (err) {
-      setError('Error deleting community.'); // Set error if deletion fails
+      setError('Error deleting community.'); 
     }
   };
 
@@ -80,7 +81,7 @@ const ViewCommunities = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="4">No communities found.</td>
+                <td colSpan={4}>No communities found.</td>
               </tr>
             )}
           </tbody>

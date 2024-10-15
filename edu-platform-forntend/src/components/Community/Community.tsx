@@ -6,7 +6,7 @@ import './styles/Community.css';
 const stripePromise = loadStripe("pk_test_51Q7WR407yXrbnphs2Yli0guMG4hgRU808Sqhdc58w4sF0mRZ8Nh7zg973YH2ZK32Xsnz3MgaTXE2xwtwEmgNjCPd00AwiW1G33");
 
 const Community = () => {
-    const [communities, setCommunities] = useState([]);
+    const [communities, setCommunities] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
@@ -25,7 +25,7 @@ const Community = () => {
         }
     };
 
-    const handlePremiumCheckout = async (communityId, communityName, price) => {
+    const handlePremiumCheckout = async (communityId: any, communityName: any, price: any) => {
         try {
             const response = await axios.post("http://localhost:3000/subscription/create-checkout-session", {
                 communityId,
@@ -48,7 +48,7 @@ const Community = () => {
     };
     
 
-    const handleJoinCommunity = async (communityId) => {
+    const handleJoinCommunity = async (communityId: any) => {
         const token = localStorage.getItem("access_token");
         try {
             const response = await axios.post(`http://localhost:3000/community/join/${communityId}`,
