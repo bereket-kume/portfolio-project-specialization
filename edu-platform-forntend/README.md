@@ -1,50 +1,67 @@
-# React + TypeScript + Vite
+# Connect Space - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The frontend for the Connect Space project, built using **React** and **Vite**. This application provides a user-friendly interface for user registration, community management, and interactions.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Future Enhancements](#future-enhancements)
+- [Lessons Learned](#lessons-learned)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **User Authentication**: Secure user registration and login with JWT.
+- **Community Management**: Users can view, join, and interact within communities.
+- **Admin Dashboard**: Admins can manage communities, view analytics, and post announcements.
+- **Payment Integration**: Premium features with Stripe payment gateway integration.
 
-- Configure the top-level `parserOptions` property like this:
+## Tech Stack
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Frontend Framework**: React
+- **Build Tool**: Vite
+- **State Management**: React Context API (or any state management library you are using)
+- **Routing**: React Router
+- **Styling**: CSS
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Getting Started
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+To set up the frontend for Connect Space, follow these steps.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Installation
+
+1. Navigate to the frontend directory:
+
+   ```bash
+   cd edu-platform-frontend
+
+    Install the frontend dependencies:
+
+    bash
+
+npm install
+
+Set up environment variables. Create a .env file in the root of the frontend directory with the following variables:
+
+plaintext
+
+    VITE_API_URL=http://localhost:5173
+
+Running the Application
+
+    Start the frontend application:
+
+    bash
+
+    npm run dev
+
+    Open your web browser and navigate to http://localhost:5173 to view the application.
+
+
+
+This project is licensed under the MIT License. See the LICENSE file for details.

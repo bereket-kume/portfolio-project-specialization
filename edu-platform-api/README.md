@@ -22,64 +22,96 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+# Connect Space - Backend
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+The backend for the Connect Space project, built using **NestJS**, **Prisma**, and **MongoDB**. This backend provides a robust API for user authentication, community management, and payment integration.
 
-## Project setup
+## Table of Contents
 
-```bash
-$ npm install
-```
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Future Enhancements](#future-enhancements)
+- [Lessons Learned](#lessons-learned)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Compile and run the project
+## Features
 
-```bash
-# development
-$ npm run start
+- **User Authentication**: Secure registration and login using JWT.
+- **Community Management**: Create, view, and manage communities.
+- **Admin Dashboard**: Admin capabilities for managing communities and posting announcements.
+- **Payment Integration**: Interface with Stripe for premium features.
 
-# watch mode
-$ npm run start:dev
+## Tech Stack
 
-# production mode
-$ npm run start:prod
-```
+- **Framework**: NestJS
+- **Database**: MongoDB
+- **ORM**: Prisma
+- **Authentication**: JWT
+- **Payment Gateway**: Stripe
 
-## Run tests
+## Getting Started
 
-```bash
-# unit tests
-$ npm run test
+To set up the backend for Connect Space, follow these steps.
 
-# e2e tests
-$ npm run test:e2e
+### Installation
 
-# test coverage
-$ npm run test:cov
-```
+1. Navigate to the backend directory:
 
-## Resources
+   ```bash
+   cd edu-platform-api
 
-Check out a few resources that may come in handy when working with NestJS:
+    Install the backend dependencies:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+    bash
 
-## Support
+npm install
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Set up environment variables. Create a .env file in the root of the backend directory with the following variables:
 
-## Stay in touch
+plaintext
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+    DATABASE_URL=your_database_connection_string
+    JWT_SECRET=your_jwt_secret
+    STRIPE_SECRET_KEY=your_stripe_secret_key
 
-## License
+Database Migration
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+    Run the Prisma migration to set up the database schema:
+
+    bash
+
+    npx prisma migrate dev --name init
+
+Seed Database (Optional)
+
+To seed the database with initial data, run:
+
+bash
+
+npx prisma db seed
+
+Usage
+
+    Start the backend server:
+
+    bash
+
+    npm run start
+
+    The server will run on http://localhost:3000.
+
+API Documentation
+
+The backend API is documented with Swagger. To access the documentation:
+
+    Start the backend server.
+    Navigate to http://localhost:3000/api in your browser.
+
+
+
+This project is licensed under the MIT License. See the LICENSE file for details.
