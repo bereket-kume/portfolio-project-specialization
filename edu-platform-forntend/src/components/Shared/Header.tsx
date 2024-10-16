@@ -1,17 +1,32 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './styles/Header.css';
 import AdminHeader from '../Admin/AdminHeader';
+import { useEffect, useState } from 'react';
 
 const Header = ({ user, setUser }) => {
     const navigate = useNavigate();
+    const userToken = localStorage.getItem('access_token');
+
+    const [menuOpen, setMenuOpen] = useState(false); // For toggling the mobile menu
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, [setUser]);
 
     const signOut = () => {
-        localStorage.removeItem('authToken');
-        setUser(false);
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('user');
+        setUser(null);
         navigate('/');
     };
 
-    // Ensure user exists before checking the role
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen); // Toggle the menu
+    };
+
     if (user && user.role === 'ADMIN') {
         return <AdminHeader user={user} setUser={setUser} />;
     }
@@ -19,8 +34,14 @@ const Header = ({ user, setUser }) => {
     return (
         <header className="header">
             <div className="container">
-                <h1 className="logo"></h1>
-                <nav className="nav">
+                <h1 className="logo">ConnectSpace</h1>
+
+                {/* Hamburger icon for mobile */}
+                <div className="hamburger" onClick={toggleMenu}>
+                    ☰
+                </div>
+
+                <nav className={`nav ${menuOpen ? 'active' : ''}`}> {/* Add active class when open */}
                     <ul>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/about">About</Link></li>
@@ -33,11 +54,11 @@ const Header = ({ user, setUser }) => {
                                 <Link to="/profile">
                                     <img 
                                         src={user.avatar || 'https://via.placeholder.com/40'} 
-                                        alt="" 
+                                        alt="Profile" 
                                         className="profile-circle"
                                     />
                                 </Link>
-                                <button className="signout-btn" onClick={signOut}>Sign out</button>
+                                <button className="signout-btn-header" onClick={signOut}>Sign out</button>
                             </>
                         ) : (
                             <Link to="/login" className="login-btn">Signup</Link>

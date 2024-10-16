@@ -1,138 +1,168 @@
-/* General container styles */
-.community-detail-container {
-    max-width: 800px; /* Limits the width for better readability */
-    margin: 0 auto; /* Centers the container */
-    padding: 20px; /* Adds space around the content */
-    background-color: #f9f9f9; /* Light background for contrast */
-    border-radius: 10px; /* Softens the corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds shadow for depth */
-    margin-top: 200px;
-}
+/* communityAdmin.css */
 
-/* Community Info Section */
-.community-info {
-    text-align: center; /* Centers text */
-    margin-bottom: 30px; /* Adds space below */
-}
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+  }
+  
+  /* Flex container for community details and email section */
+  .community-detail-container {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 20px; /* Space between community details and email section */
+  }
+  
+  /* Community info styles */
+  .community-info {
+    margin-bottom: 20px;
+  }
+  
+  .community-info h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .prem-label {
+    background-color: #ffd700; /* Gold color for premium label */
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+  }
 
-.community-info h1 {
-    font-size: 2.5rem; /* Larger font for community name */
-    color: #333; /* Dark text color */
-}
+  .cont {
+    margin-left: 300px;
+  }
+  
+  /* Announcements section */
+  .announcements-section {
+    margin-bottom: 20px;
+  }
+  
+  .announcement-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .announcement-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .announcement-item p {
+    margin: 0;
+  }
+  
+  /* Announcement form styles */
+  .announcement-form-section {
+    margin-bottom: 20px;
+  }
+  
+  .announcement-form-section textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  .announcement-form-section button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745; /* Bootstrap success color */
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .announcement-form-section button:hover {
+    background-color: #218838; /* Darker shade on hover */
+  }
+  
+  /* Success and error messages */
+  .success-message {
+    color: #28a745;
+  }
+  
+  .error-message {
+    color: #dc3545; /* Bootstrap danger color */
+  }
+  
+  /* Members section */
+  .members-section {
+    margin-bottom: 20px;
+  }
+  
+  .member-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .member-item {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Meeting and Email container */
+  .meeting-email-container {
+    flex: 0.2; /* Adjust width of this section */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-.community-info p {
-    font-size: 1.2rem; /* Slightly larger font for description */
-    color: #666; /* Medium gray for description */
-}
+  }
+  
+  .meeting-email-container h1 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
 
-.prem-label {
-    display: inline-block; /* Makes label inline */
-    margin-top: 10px; /* Space above */
-    padding: 5px 10px; /* Space around label */
-    background-color: #ffcc00; /* Bright background for visibility */
-    color: #333; /* Dark text color */
-    border-radius: 5px; /* Rounded corners */
-    font-weight: bold; /* Makes it stand out */
-}
-
-/* Announcements Section */
-.announcements-section {
-    margin-bottom: 30px; /* Space below announcements */
-}
-
-.announcements-section h2 {
-    font-size: 1.8rem; /* Medium header size */
-    color: #333; /* Dark text color */
-    border-bottom: 2px solid #ffcc00; /* Underline for emphasis */
-    padding-bottom: 10px; /* Space below header */
-}
-
-.announcement-list {
-    list-style: none; /* Removes bullets from list */
-    padding: 0; /* Removes padding */
-}
-
-.announcement-item {
-    background-color: #fff; /* White background for items */
-    border: 1px solid #ddd; /* Light border around items */
-    border-radius: 5px; /* Rounded corners */
-    padding: 15px; /* Inner padding for content */
-    margin-bottom: 15px; /* Space between items */
-    transition: background-color 0.3s; /* Smooth hover effect */
-}
-
-.announcement-item:hover {
-    background-color: #f1f1f1; /* Slightly darker on hover */
-}
-
-/* Announcement Form Section */
-.announcement-form-section {
-    margin-bottom: 30px; /* Space below form */
-}
-
-.announcement-form-section h2 {
-    font-size: 1.8rem; /* Medium header size */
-    color: #333; /* Dark text color */
-    border-bottom: 2px solid #ffcc00; /* Underline for emphasis */
-    padding-bottom: 10px; /* Space below header */
-}
-
-textarea {
-    width: 100%; /* Full width for text area */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px; /* Inner padding */
-    resize: none; /* Disable resizing */
-    margin-bottom: 15px; /* Space below */
-    font-size: 1rem; /* Font size */
-}
-
-button {
-    padding: 10px 20px; /* Space around button text */
-    background-color: #ffcc00; /* Bright button background */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-weight: bold; /* Bold button text */
-    transition: background-color 0.3s; /* Smooth background color change */
-}
-
-button:hover {
-    background-color: #e6b800; /* Darker yellow on hover */
-}
-
-/* Messages */
-.success-message {
-    color: green; /* Green for success */
-    margin-top: 10px; /* Space above */
-}
-
-.error-message {
-    color: red; /* Red for errors */
-    margin-top: 10px; /* Space above */
-}
-
-/* Members Section */
-.members-section {
-    margin-bottom: 30px; /* Space below members */
-}
-
-.members-section h2 {
-    font-size: 1.8rem; /* Medium header size */
-    color: #333; /* Dark text color */
-    border-bottom: 2px solid #ffcc00; /* Underline for emphasis */
-    padding-bottom: 10px; /* Space below header */
-}
-
-.member-list {
-    list-style: none; /* Removes bullets from list */
-    padding: 0; /* Removes padding */
-}
-
-.member-item {
-    background-color: #fff; /* White background for items */
-    border: 1px solid #ddd; /* Light border around items */
-    border-radius: 5px; /* Rounded corners */
-    padding: 15px; /* Inner padding for content */
-    margin-bottom: 15px; /* Space between items */
-}
+  /* Meeting and Email container */
+.meeting-email-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .meeting-email-container button {
+    width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  
+  .meeting-email-container button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .meeting-email-container button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #007bff;
+  }
+  

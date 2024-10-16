@@ -51,13 +51,17 @@
   
   .action-button.view {
     background-color: #3498db;
+    width: 100px;
   }
   
   .action-button.edit {
     background-color: #f39c12;
+    margin: 10px;
   }
   
   .action-button.delete {
     background-color: #e74c3c;
+    margin: 10px;
+    width: 100px;
   }
   

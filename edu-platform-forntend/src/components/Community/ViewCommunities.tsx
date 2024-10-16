@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './styles/viewCommunities.css';
-import AdminHeader from '../Admin/AdminHeader';
 import { Link } from 'react-router-dom';
 import Community from './Community';
 
@@ -69,7 +68,6 @@ const ViewCommunities = () => {
                     <Link to={`/community/${community.id}/admin`}>
                       <button className="action-button view">View</button>
                     </Link>
-                    <button className="action-button edit">Edit</button>
                     <button 
                       className="action-button delete" 
                       onClick={() => deleteCommunity(community.id)}

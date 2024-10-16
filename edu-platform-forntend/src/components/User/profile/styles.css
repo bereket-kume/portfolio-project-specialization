@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: row; /* Arrange children in a row */
     gap: 20px; /* Add space between profile info and joined communities */
-    height: 500px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 /* Profile information (Name, Email) */
@@ -19,10 +19,11 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex: 1; /* Make the profile section take available space */
+    min-width: 280px; /* Minimum width for better responsiveness */
 }
 
 .profile-info h1 {
-    font-size: 24px;
+    font-size: 26px; /* Increased size for better visibility */
     color: #333;
     margin-bottom: 10px;
 }
@@ -39,6 +40,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex: 1; /* Make the joined communities section take available space */
+    min-width: 280px; /* Minimum width for better responsiveness */
 }
 
 .joined-communities h2 {
@@ -61,9 +63,90 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     font-size: 16px;
     color: #555;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
 /* Add hover effect for community list items */
 .joined-communities li:hover {
     background-color: #eaeaea;
+}
+
+/* Intro Section */
+.intro-section {
+    margin-top: 20px; /* Space above the intro section */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Intro Section Content */
+.intro-section h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.intro-section p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* Extra Features */
+.extra-features {
+    display: flex;
+    flex-direction: column; /* Stack features vertically */
+}
+
+.feature {
+    display: flex;
+    align-items: center; /* Align items in center */
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Feature Icons */
+.feature i {
+    font-size: 24px; /* Larger icons */
+    margin-right: 10px; /* Space between icon and text */
+    color: #2563eb; /* Icon color */
+}
+
+/* Feature Titles */
+.feature h4 {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+}
+
+/* Feature Descriptions */
+.feature p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Add hover effect for features */
+.feature:hover {
+    background-color: #eaeaea; /* Change background on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .profile-container {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+    }
+
+    .profile-info,
+    .joined-communities {
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    .profile-info h1,
+    .joined-communities h2 {
+        font-size: 22px; /* Smaller headings on mobile */
+    }
 }

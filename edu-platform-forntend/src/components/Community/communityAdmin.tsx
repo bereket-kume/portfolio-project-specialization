@@ -82,63 +82,72 @@ const CommunityAdmin = () => {
 
   return (
     <>
-    <div className="community-detail-container">
-      <div className="community-info">
-        <h1>{community?.name}</h1>
-        <p>{community?.description}</p>
-        {community?.isPremium && <div className="prem-label">Premium Community</div>}
-      </div>
+      <div style={{ display: 'flex', flexDirection: 'row', padding: '20px' }} className="cont">
+        <div className="community-detail-container">
+          <div className="community-info">
+            <h1>{community?.name}</h1>
+            <p>{community?.description}</p>
+            {community?.isPremium && <div className="prem-label">Premium Community</div>}
+          </div>
+  
+          <div className="announcements-section">
+            <h2>Announcements</h2>
+            <ul className="announcement-list">
+              {announcements.length > 0 ? (
+                announcements.map((announcement) => (
+                  <li key={announcement.id} className="announcement-item">
+                    <p>{announcement.content}</p>
+                    <small>Posted by: {announcement.creatorName}</small>
+                  </li>
+                ))
+              ) : (
+                <li>No announcements found for this community.</li>
+              )}
+            </ul>
+          </div>
+  
+          <div className="announcement-form-section">
+            <h2>Post a New Announcement</h2>
+            <form onSubmit={submitAnnouncement}>
+              <textarea
+                value={newAnnouncement}
+                onChange={handleAnnouncementChange}
+                placeholder="Write your announcement..."
+                rows={4}
+                required
+              />
+              <button type="submit">Post Announcement</button>
+            </form>
+            {success && <p className="success-message">{success}</p>}
+            {error && <p className="error-message">{error}</p>}
+          </div>
+  
+          <div className="members-section">
+            <h2>Community Members</h2>
+            {members.length > 0 ? (
+              <ul className="member-list">
+                {members.map((member) => (
+                  <li key={member.id} className="member-item">
+                    <p>{member.user.name}</p>
+                    <p>{member.user.email}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No members found in this community.</p>
+            )}
+          </div>
+        </div>
+  
+        <div className="meeting-email-container">
+          <button>Send Email</button>
+          <button>Arrange Meeting</button>
+        </div>
 
-      <div className="announcements-section">
-        <h2>Announcements</h2>
-        <ul className="announcement-list">
-          {announcements.length > 0 ? (
-            announcements.map((announcement) => (
-              <li key={announcement.id} className="announcement-item">
-                <p>{announcement.content}</p>
-                <small>Posted by: {announcement.creatorName}</small>
-              </li>
-            ))
-          ) : (
-            <li>No announcements found for this community.</li>
-          )}
-        </ul>
       </div>
-
-      <div className="announcement-form-section">
-        <h2>Post a New Announcement</h2>
-        <form onSubmit={submitAnnouncement}>
-          <textarea
-            value={newAnnouncement}
-            onChange={handleAnnouncementChange}
-            placeholder="Write your announcement..."
-            rows={4}
-            required
-          />
-          <button type="submit">Post Announcement</button>
-        </form>
-        {success && <p className="success-message">{success}</p>}
-        {error && <p className="error-message">{error}</p>}
-      </div>
-
-      <div className="members-section">
-        <h2>Community Members</h2>
-        {members.length > 0 ? (
-          <ul className="member-list">
-            {members.map((member) => (
-              <li key={member.id} className="member-item">
-                <p>{member.user.name}</p>
-                <p>{member.user.email}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No members found in this community.</p>
-        )}
-      </div>
-    </div>
     </>
   );
+  
 };
 
 export default CommunityAdmin;

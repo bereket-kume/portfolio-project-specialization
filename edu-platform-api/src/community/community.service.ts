@@ -82,10 +82,13 @@ export class CommunityService {
         await this.prisma.announcement.deleteMany({
           where: { communityId: id },
         });
-      
+        await this.prisma.userCommunity.deleteMany({
+            where: { communityId: id },
+        });
         await this.prisma.community.delete({
           where: { id },
         });
+
       
         return { message: 'Community deleted successfully' };
       }

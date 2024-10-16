@@ -4,7 +4,7 @@ import './profile/styles.css'
 import { Link } from 'react-router-dom';
 
 const Profile = () => {
-    const [userProfile, setUserProfile] = useState<{ name: string, email: string, joinedCommunities: { id: number, name: string }[] } | null>(null);
+    const [userProfile, setUserProfile] = useState(null);
     const [error, setError] = useState(null);
     const token = localStorage.getItem('access_token'); // Assuming you store the token in localStorage
 
@@ -18,7 +18,7 @@ const Profile = () => {
                 });
                 setUserProfile(response.data);
             } catch (err) {
-                
+                setError('Error fetching user profile.');
             }
         };
 

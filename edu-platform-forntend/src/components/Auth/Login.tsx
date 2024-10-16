@@ -28,6 +28,7 @@ const Login = ({ setUser }) => {
                 role: res.data.role,  
             };
             setUser(userData);
+            localStorage.setItem('user', JSON.stringify(userData));
 
             setSuccess("Login successful!");
             setError("");
