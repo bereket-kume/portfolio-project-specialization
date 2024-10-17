@@ -16,7 +16,7 @@ const DonutChart = () => {
 
   return (
     <div className="donut-chart-container">
-      <h2>Donut Chart with Text</h2>
+      <h2>Chart</h2>
       <PieChart width={400} height={400}>
         <Pie
           data={chartData}

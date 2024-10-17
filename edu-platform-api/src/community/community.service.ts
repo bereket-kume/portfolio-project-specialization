@@ -124,16 +124,7 @@ export class CommunityService {
             throw new BadRequestException("User already joined this community")
         }
 
-        if(community.isPremium) {
-            const userCommunityCount = await this.prisma.userCommunity.count({
-                where: {
-                    userId,
-                }
-            })
-            if (userCommunityCount >= 2) {
-                throw new BadRequestException("User can't join more than 2 premium communities");
-            }
-        }
+        
 
         await this.prisma.userCommunity.create({
             data: {

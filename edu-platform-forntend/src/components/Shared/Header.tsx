@@ -7,7 +7,7 @@ const Header = ({ user, setUser }) => {
     const navigate = useNavigate();
     const userToken = localStorage.getItem('access_token');
 
-    const [menuOpen, setMenuOpen] = useState(false); // For toggling the mobile menu
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -24,7 +24,7 @@ const Header = ({ user, setUser }) => {
     };
 
     const toggleMenu = () => {
-        setMenuOpen(!menuOpen); // Toggle the menu
+        setMenuOpen(!menuOpen); 
     };
 
     if (user && user.role === 'ADMIN') {
@@ -36,16 +36,14 @@ const Header = ({ user, setUser }) => {
             <div className="container">
                 <h1 className="logo">ConnectSpace</h1>
 
-                {/* Hamburger icon for mobile */}
                 <div className="hamburger" onClick={toggleMenu}>
                     ☰
                 </div>
 
-                <nav className={`nav ${menuOpen ? 'active' : ''}`}> {/* Add active class when open */}
+                <nav className={`nav ${menuOpen ? 'active' : ''}`}> 
                     <ul>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/about">About</Link></li>
-                        <li><Link to="/contact">Contact</Link></li>
+                       
                     </ul>
 
                     <div className="header-right">

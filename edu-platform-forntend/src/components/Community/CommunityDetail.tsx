@@ -45,6 +45,7 @@ const CommunityDetail = () => {
   }
 
   return (
+    <div style={{ display: 'flex', flexDirection: 'row'}}>
     <div className="community-detail-container">
       <div className="community-info">
         <h1>{community?.name}</h1>
@@ -69,17 +70,17 @@ const CommunityDetail = () => {
           )}
         </ul>
       </div>
-
-      <div className="additional-section">
-        <h2>Recent Members</h2>
-        <ul className="members-list">
-          <li>John Doe</li>
-          <li>Jane Smith</li>
-          <li>Chris Johnson</li>
-        </ul>
-      </div>
       <TestimonialSlider />
     </div>
+     <div className="additional-section">
+     <h2>Recent Members</h2>
+     <ul className="members-list">
+       <li>John Doe</li>
+       <li>Jane Smith</li>
+       <li>Chris Johnson</li>
+     </ul>
+   </div>
+   </div>
   );
 };
 

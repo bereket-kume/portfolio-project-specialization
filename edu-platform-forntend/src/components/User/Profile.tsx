@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Profile = () => {
     const [userProfile, setUserProfile] = useState(null);
     const [error, setError] = useState(null);
-    const token = localStorage.getItem('access_token'); // Assuming you store the token in localStorage
+    const token = localStorage.getItem('access_token');
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -18,7 +18,7 @@ const Profile = () => {
                 });
                 setUserProfile(response.data);
             } catch (err) {
-                setError('Error fetching user profile.');
+                setError('Failed to fetch user profile');
             }
         };
 
@@ -36,35 +36,42 @@ const Profile = () => {
     return (
         <>
         <div className="profile-container">
-            {/* User Profile Information */}
             <div className="profile-info">
                 <h1>{userProfile.name}</h1>
                 <p>Email: {userProfile.email}</p>
             </div>
 
-            {/* Joined Communities */}
             <div className="joined-communities">
-                <h2>Joined Communities:</h2>
-                <ul>
-                    {userProfile.joinedCommunities.length > 0 ? (
-                        <ul>
-                        {userProfile.joinedCommunities.map((community) => (
-                          <li key={community.id}>
-                            <Link to={`/community/${community.id}`}>{community.name}</Link>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                        <li>No communities joined yet.</li>
-                    )}
-                </ul>
-            </div>
+                    <h2>Joined Communities:</h2>
+    <ul>
+        {userProfile.joinedCommunities.length > 0 ? (
+            <ul>
+                {
+                  userProfile.joinedCommunities
+                    .reduce((uniqueCommunities, currentCommunity) => {
+                      if (!uniqueCommunities.some(community => community.id === currentCommunity.id)) {
+                        uniqueCommunities.push(currentCommunity);
+                      }
+                      return uniqueCommunities;
+                    }, [])
+                    .map((community) => (
+                      <li key={community.id}>
+                        <Link to={`/community/${community.id}`}>{community.name}</Link>
+                      </li>
+                    ))
+                }
+            </ul>
+        ) : (
+            <li>No communities joined yet.</li>
+        )}
+    </ul>
+</div>
+
         </div>
         <section className="intro-section">
     <div className="container">
         
 
-        {/* New Div Below the Intro Content */}
         <div className="intro-extra-content m-10">
             <div className="extra-text">
                 <h3>Why Our Community is Different</h3>
@@ -86,11 +93,9 @@ const Profile = () => {
         </div>
 
         <div className="intro-content">
-            {/* Left: Image */}
             <div className="intro-image">
                 <img src="/images/community2.jpg" alt="Community" />
             </div>
-            {/* Right: Friendly Text */}
             
         </div>
     </div>

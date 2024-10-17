@@ -19,7 +19,7 @@ const BarChartComponent = () => {
     <div className="chart-card">
       {/* Card header with title and description */}
       <div className="chart-header">
-        <h2>Bar Chart - Multiple</h2>
+        <h2>Bar Chart</h2>
         <p>January - June 2024</p>
       </div>
 

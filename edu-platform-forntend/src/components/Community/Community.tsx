@@ -37,6 +37,7 @@ const Community = () => {
             const stripe = await stripePromise;
     
             const result = await stripe.redirectToCheckout({ sessionId });
+            
             if (result.error) {
                 console.error(result.error.message);
             } else {
