@@ -2,18 +2,6 @@
 
 A modern educational platform designed to facilitate learning and community engagement. This project includes a robust backend API and a responsive frontend application, enabling users to register, login, and interact within communities.
 
-## Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Documentation](#api-documentation)
-- [Future Enhancements](#future-enhancements)
-- [Lessons Learned](#lessons-learned)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
