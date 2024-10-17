@@ -39,7 +39,7 @@ To get a local copy of this project up and running, follow these steps.
 
    ```bash
    git clone https://github.com/bereket-kume/portfolio-project-specialization
-   cd connect-space
+   cd portfolio-project-specialization
 
     Navigate to the backend directory:
 
