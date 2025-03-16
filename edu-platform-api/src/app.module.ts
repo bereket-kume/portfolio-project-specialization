@@ -8,6 +8,7 @@ import { AnnouncementsModule } from './announcements/announcements.module';
 import { CommunityModule } from './community/community.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { ConfigModule } from '@nestjs/config';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { ConfigModule } from '@nestjs/config';
     UserModule, 
     AnnouncementsModule, 
     CommunityModule, 
-    SubscriptionModule
+    SubscriptionModule, EmailModule
   ],
   controllers: [],
   providers: [AppService, PrismaService],

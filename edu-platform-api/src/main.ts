@@ -10,7 +10,7 @@ async function bootstrap() {
     allowedHeaders: 'Content-Type, Authorization',
   })
   const config = new DocumentBuilder()
-    .setTitle("Backend Api")
+    .setTitle("ConnectSpace API")
     .setDescription("The backend API for the Community Platform")
     .setVersion('1.0')
     .addTag("API")
