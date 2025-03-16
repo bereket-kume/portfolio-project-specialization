@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe, Stripe } from "@stripe/stripe-js";
 import './styles/Community.css';
+
+// Define types for the community object and other variables
+interface Community {
+    id: string;
+    name: string;
+    description: string;
+    isPremium: boolean;
+    price?: number; // Optional price for premium communities
+}
 
 const stripePromise = loadStripe("pk_test_51Q7WR407yXrbnphs2Yli0guMG4hgRU808Sqhdc58w4sF0mRZ8Nh7zg973YH2ZK32Xsnz3MgaTXE2xwtwEmgNjCPd00AwiW1G33");
 
 const Community = () => {
-    const [communities, setCommunities] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [communities, setCommunities] = useState<Community[]>([]); // Specify the type of state
+    const [loading, setLoading] = useState<boolean>(true); // Boolean type for loading state
+    const [error, setError] = useState<string>(""); // Error message as a string
 
     useEffect(() => {
         fetchCommunities();
@@ -16,7 +25,7 @@ const Community = () => {
 
     const fetchCommunities = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/community");
+            const response = await axios.get<Community[]>("http://localhost:3000/community"); // Typed response
             setCommunities(response.data);
             setLoading(false);
         } catch (err) {
@@ -25,39 +34,43 @@ const Community = () => {
         }
     };
 
-    const handlePremiumCheckout = async (communityId: any, communityName: any, price: any) => {
+    const handlePremiumCheckout = async (communityId: string, communityName: string, price: number) => {
         try {
             const response = await axios.post("http://localhost:3000/subscription/create-checkout-session", {
                 communityId,
                 communityName,
                 price
             });
-    
+
             const { sessionId } = response.data;
-            const stripe = await stripePromise;
-    
-            const result = await stripe.redirectToCheckout({ sessionId });
-            
-            if (result.error) {
-                console.error(result.error.message);
-            } else {
-                console.log("Redirecting to Stripe Checkout...");
+            const stripe: Stripe | null = await stripePromise;
+
+            if (stripe) {
+                const result = await stripe.redirectToCheckout({ sessionId });
+
+                if (result.error) {
+                    console.error(result.error.message);
+                } else {
+                    console.log("Redirecting to Stripe Checkout...");
+                }
             }
         } catch (error) {
             console.error("Checkout error:", error);
         }
     };
-    
 
-    const handleJoinCommunity = async (communityId: any) => {
+    const handleJoinCommunity = async (communityId: string) => {
         const token = localStorage.getItem("access_token");
         try {
-            const response = await axios.post(`http://localhost:3000/community/join/${communityId}`,
-                {}
-                ,{
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                }});
+            const response = await axios.post(
+                `http://localhost:3000/community/join/${communityId}`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
             console.log("Joined community:", response.data);
             alert("Successfully joined the community!");
         } catch (error) {
@@ -90,7 +103,7 @@ const Community = () => {
                             {community.isPremium ? (
                                 <button 
                                     className="checkout-btn"
-                                    onClick={() => handlePremiumCheckout(community.id, community.name, community.price)}
+                                    onClick={() => handlePremiumCheckout(community.id, community.name, community.price!)} // Non-null assertion as price is optional
                                 >
                                     Pay and Join
                                 </button>

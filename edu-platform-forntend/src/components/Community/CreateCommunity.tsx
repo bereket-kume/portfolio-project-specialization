@@ -33,6 +33,7 @@ const CreateCommunity = () => {
           },
         }
       );
+      console.log(response)
       setLoading(false);
       setMessage('Community created successfully!');
       setName('');

@@ -9,6 +9,7 @@ const CommunityAdmin = () => {
   const [announcements, setAnnouncements] = useState<{ id: string, content: string, creatorName: string }[]>([]);
   const [members, setMembers] = useState<{ id: string, user: { name: string, email: string } }[]>([]);
   const [newAnnouncement, setNewAnnouncement] = useState("");
+  const [emailContent, setEmailContent] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -52,6 +53,10 @@ const CommunityAdmin = () => {
     setNewAnnouncement(e.target.value);
   };
 
+  const handleEmailChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+    setEmailContent(e.target.value);
+  };
+
   const submitAnnouncement = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setError("");
@@ -72,6 +77,25 @@ const CommunityAdmin = () => {
     }
   };
 
+  const sendEmailToMembers = async () => {
+    setError("");   
+    setSuccess("");
+    try {
+      const memberEmails = members.map(member => member.user.email);
+      const response = await axios.post(`http://localhost:3000/email/send`, {
+        message: emailContent, 
+        communityMembers: memberEmails,
+      });
+      
+      if (response.status === 200) {
+        setSuccess("Emails sent successfully.");
+        setEmailContent("");
+      }
+    } catch (err) {
+      setError("Error sending emails.");
+    }
+  };
+  
   if (loading) {
     return <div>Loading community details...</div>;
   }
@@ -140,14 +164,18 @@ const CommunityAdmin = () => {
         </div>
   
         <div className="meeting-email-container">
-          <button>Send Email</button>
-          <button>Arrange Meeting</button>
+          <textarea
+            value={emailContent}
+            onChange={handleEmailChange}
+            placeholder="Write your email content..."
+            rows={6}
+            required
+          />
+          <button onClick={sendEmailToMembers}>Send Email</button>
         </div>
-
       </div>
     </>
   );
-  
 };
 
 export default CommunityAdmin;

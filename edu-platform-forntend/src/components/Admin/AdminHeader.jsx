@@ -1,5 +1,3 @@
-// AdminHeader.js
-import React from 'react';
 import './styles/adminHeader.css'; 
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -7,10 +5,11 @@ const AdminHeader = ({ user, setUser }) => {
   const navigate = useNavigate();
 
   const signOut = () => {
-    localStorage.removeItem('authToken');
-    setUser(false);
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
+    setUser(null);
     navigate('/');
-  };
+};
 
   return (
     <header className="admin-header">
@@ -24,7 +23,7 @@ const AdminHeader = ({ user, setUser }) => {
       </section>
       </div>
       
-      <aside className="admin-sidebar open"> {/* Sidebar is always open */}
+      <aside className="admin-sidebar open"> 
         <div className="admin-sidebar-title">
           <h1>MENU</h1>
         </div>

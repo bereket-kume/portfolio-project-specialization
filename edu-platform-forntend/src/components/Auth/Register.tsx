@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
 import './styles/register.css';
 import TestimonialSlider from '../Shared/Testimonials';
 
@@ -13,7 +13,7 @@ const Registration = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [loading, setLoading] = useState(false); // To handle loading state
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -31,19 +31,18 @@ const Registration = () => {
       return;
     }
 
-    setLoading(true); // Set loading to true while waiting for the response
+    setLoading(true);
 
     try {
-      // Make a POST request to your API endpoint
       const response = await axios.post('http://localhost:3000/auth/register', formData);
       console.log('User registered:', response.data);
-      navigate('/login'); // Redirect to login page after successful registration
+      navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
-      setErrorMessage('Registration failed. Please try again.'); // Display error message
+      setErrorMessage('Registration failed. Please try again.');
     } finally {
-      setLoading(false); // Reset loading state
-    }
+      setLoading(false);
+    } // Closing brace added here
   };
 
   return (
@@ -103,7 +102,7 @@ const Registration = () => {
           </div>
 
           <button type="submit" disabled={loading}>
-            {loading ? 'Registering...' : 'Register'} {/* Show loading state */}
+            {loading ? 'Registering...' : 'Register'}
           </button>
         </form>
       </div>

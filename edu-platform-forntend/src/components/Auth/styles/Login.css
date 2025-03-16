@@ -2,7 +2,7 @@
 .login-container {
     max-width: 400px;
     padding: 40px 20px;
-    background: linear-gradient(135deg, #2193b0, #6dd5ed); /* Adds a gradient background */
+    background: linear-gradient(135deg, #ebeff0, #e5eaeb); /* Adds a gradient background */
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     margin: 80px auto; /* Centers the container */
@@ -15,7 +15,7 @@
 /* Heading for the login form */
 .login-heading {
     text-align: center;
-    color: white;
+    color: black;
     font-size: 28px;
     margin-bottom: 20px;
     font-weight: 700;

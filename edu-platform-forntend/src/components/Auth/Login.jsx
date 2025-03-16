@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import './styles/Login.css';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = ({ setUser }) => {
     const [email, setEmail] = useState("");
@@ -71,6 +71,7 @@ const Login = ({ setUser }) => {
                     className="login-input"
                 />
                 <button type="submit" className="login-button">Login</button>
+                <Link to='/signup' >signup</Link>
             </form>
             {error && <span className="login-message login-error">{error}</span>}
             {success && <span className="login-message login-success">{success}</span>}

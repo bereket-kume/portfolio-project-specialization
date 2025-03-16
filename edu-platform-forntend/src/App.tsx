@@ -6,6 +6,7 @@ import Registration from './components/Auth/Register';
 import Community from './components/Community/Community';
 import Header from './components/Shared/Header';
 import Profile from './components/User/Profile';
+
 import SuccessPage from './pages/SuccessPage';
 import FailurePage from './pages/FailurePage';
 import CommunityDetail from './components/Community/CommunityDetail';

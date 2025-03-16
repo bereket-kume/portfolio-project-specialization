@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './styles/Header.css';
 import AdminHeader from '../Admin/AdminHeader';
 import { useEffect, useState } from 'react';
+import defaultAvatar from './assets/default-avatar.png';
 
 const Header = ({ user, setUser }) => {
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Header = ({ user, setUser }) => {
     const signOut = () => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('user');
+        console.log(user)
         setUser(null);
         navigate('/');
     };
@@ -51,7 +53,8 @@ const Header = ({ user, setUser }) => {
                             <>
                                 <Link to="/profile">
                                     <img 
-                                        src={user.avatar || 'https://via.placeholder.com/40'} 
+                                        src={user?.avatar || 'https://placekitten.com/40/40'}
+
                                         alt="Profile" 
                                         className="profile-circle"
                                     />

@@ -33,7 +33,7 @@ const SuccessPage = () => {
 
         const timer = setTimeout(() => {
             navigate('/profile');
-        }, 50000); 
+        }, 5000); 
 
         return () => clearTimeout(timer);
 
