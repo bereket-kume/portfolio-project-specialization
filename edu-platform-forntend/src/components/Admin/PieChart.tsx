@@ -1,67 +1,53 @@
-import React, { useMemo } from "react";
-import { PieChart, Pie, Label, Tooltip, Cell } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import './styles/DonutChart.css'
-const chartData = [
-  { name: "Chrome", value: 275, color: "#4285F4" },
-  { name: "Safari", value: 200, color: "#FF9F1A" },
-  { name: "Firefox", value: 287, color: "#FF7139" },
-  { name: "Edge", value: 173, color: "#00A4EF" },
-  { name: "Other", value: 190, color: "#999999" },
-];
 
-const DonutChart = () => {
-  const totalVisitors = useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.value, 0);
-  }, []);
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-  return (
-    <div className="donut-chart-container">
-      <h2>Chart</h2>
-      <PieChart width={400} height={400}>
-        <Pie
-          data={chartData}
-          dataKey="value"
-          nameKey="name"
-          innerRadius={80}
-          outerRadius={120}
-          paddingAngle={5}
-          stroke="none"
-        >
-          {chartData.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={entry.color} />
-          ))}
-          <Label
-            position="center"
-            content={({ viewBox }) => {
-              if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                return (
-                  <text
-                    x={viewBox.cx}
-                    y={viewBox.cy}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                  >
-                    <tspan x={viewBox.cx} y={viewBox.cy} className="chart-text">
-                      {totalVisitors}
-                    </tspan>
-                    <tspan
-                      x={viewBox.cx}
-                      y={(viewBox.cy || 0) + 20}
-                      className="chart-label"
-                    >
-                      Visitors
-                    </tspan>
-                  </text>
-                );
-              }
-            }}
-          />
-        </Pie>
-        <Tooltip />
-      </PieChart>
-      <p className="footer-text">Total visitors in the last 6 months</p>
-    </div>
-  );
+interface PieChartProps {
+    data: Array<{ name: string; value: number }>;
+}
+
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: any) => {
+    const RADIAN = Math.PI / 180;
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+            {`${(percent * 100).toFixed(0)}%`}
+        </text>
+    );
 };
 
-export default DonutChart;
+const defaultData = [
+    { name: "Free Communities", value: 400 },
+    { name: "Premium Communities", value: 300 },
+    { name: "Active Users", value: 300 },
+    { name: "Inactive Users", value: 200 },
+];
+
+const CustomPieChart: React.FC<PieChartProps> = ({ data = defaultData }) => {
+    return (
+        <ResponsiveContainer width="100%" height={400}>
+            <PieChart>
+                <Pie
+                    data={data}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={renderCustomizedLabel}
+                    outerRadius={150}
+                    fill="#8884d8"
+                    dataKey="value"
+                >
+                    {data.map((_entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                </Pie>
+            </PieChart>
+        </ResponsiveContainer>
+    );
+};
+
+export default CustomPieChart;

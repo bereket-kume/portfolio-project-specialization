@@ -1,16 +1,15 @@
 // Importing necessary modules from React and Recharts
-import React from 'react';
-import { Bar, BarChart, CartesianGrid, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import './styles/graph.css'
 
 // Sample chart data
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+const data = [
+  { name: 'Jan', users: 400 },
+  { name: 'Feb', users: 300 },
+  { name: 'Mar', users: 600 },
+  { name: 'Apr', users: 800 },
+  { name: 'May', users: 700 },
+  { name: 'Jun', users: 900 },
 ];
 
 // Main React component
@@ -26,15 +25,17 @@ const BarChartComponent = () => {
       {/* Chart container */}
       <div className="chart-container">
         {/* Responsive chart */}
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={chartData}>
-            <CartesianGrid vertical={false} stroke="#ccc" />
-            <XAxis dataKey="month" tickFormatter={(value) => value.slice(0, 3)} />
-            <Tooltip />
-            <Bar dataKey="desktop" fill="#8884d8" radius={5} />
-            <Bar dataKey="mobile" fill="#82ca9d" radius={5} />
-          </BarChart>
-        </ResponsiveContainer>
+        <div style={{ width: '100%', height: 300 }}>
+          <ResponsiveContainer>
+            <BarChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="users" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
 
       {/* Card footer with trending information */}

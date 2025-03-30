@@ -1,11 +1,18 @@
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './styles/register.css';
 import TestimonialSlider from '../Shared/Testimonials';
 
+interface FormData {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  name: string;
+}
+
 const Registration = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     email: '',
     password: '',
     confirmPassword: '',
@@ -16,14 +23,14 @@ const Registration = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -42,7 +49,7 @@ const Registration = () => {
       setErrorMessage('Registration failed. Please try again.');
     } finally {
       setLoading(false);
-    } // Closing brace added here
+    }
   };
 
   return (

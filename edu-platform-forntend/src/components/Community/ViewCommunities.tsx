@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import './styles/viewCommunities.css';
-import { Link } from 'react-router-dom';
-import Community from './Community';
+import './styles/ViewCommunities.css';
+
+interface Community {
+  id: string;
+  name: string;
+  description: string;
+  isPremium: boolean;
+  price?: number;
+}
 
 const ViewCommunities = () => {
   const [communities, setCommunities] = useState<Community[]>([]);
@@ -15,77 +21,49 @@ const ViewCommunities = () => {
 
   const fetchCommunities = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/community');
+      const response = await axios.get<Community[]>('http://localhost:3000/community');
       setCommunities(response.data);
       setLoading(false);
     } catch (err) {
-      setError('Error fetching communities.');
+      setError('Error fetching communities');
       setLoading(false);
     }
   };
 
-  const deleteCommunity = async (id: any) => {
-    const confirmed = window.confirm('Are you sure you want to delete this community?');
-    if (!confirmed) return; 
+  const handleEdit = (id: string) => {
+    window.location.href = `/admin/community/edit/${id}`;
+  };
 
-    try {
-      await axios.delete(`http://localhost:3000/community/${id}/delete`);
-      fetchCommunities(); 
-    } catch (err) {
-      setError('Error deleting community.'); 
+  const handleDelete = async (id: string) => {
+    if (window.confirm('Are you sure you want to delete this community?')) {
+      try {
+        await axios.delete(`http://localhost:3000/community/${id}`);
+        setCommunities(communities.filter(community => community.id !== id));
+      } catch (err) {
+        console.error('Error deleting community:', err);
+      }
     }
   };
 
-  if (loading) {
-    return <div>Loading communities...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
-    <>
-      <div className="view-communities-container">
-        <h1>Community List</h1>
-        <table className="communities-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {communities.length > 0 ? (
-              communities.map((community) => (
-                <tr key={community.id}>
-                  <td>{community.name}</td>
-                  <td>{community.description}</td>
-                  <td>{community.isPremium ? 'Premium' : 'Regular'}</td>
-                  <td>
-                    <Link to={`/community/${community.id}/admin`}>
-                      <button className="action-button view">View</button>
-                    </Link>
-                    <button 
-                      className="action-button delete" 
-                      onClick={() => deleteCommunity(community.id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={4}>No communities found.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+    <div className="communities-container">
+      <h2>Communities</h2>
+      <div className="communities-grid">
+        {communities.map((community) => (
+          <div key={community.id} className="community-card">
+            <h3>{community.name}</h3>
+            <p>{community.description}</p>
+            <div className="community-actions">
+              <button onClick={() => handleEdit(community.id)}>Edit</button>
+              <button onClick={() => handleDelete(community.id)}>Delete</button>
+            </div>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import './style/failure.css'; // Import the CSS file
 
 const FailurePage = () => {

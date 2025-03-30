@@ -6,6 +6,11 @@ import * as bcrypt from 'bcryptjs';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 
+interface LoginResponse {
+  access_token: string;
+  role: string;
+}
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -14,7 +19,7 @@ export class AuthService {
   ) {}
 
   async register(registerDto: RegisterDto): Promise<User> {
-    const { email, password,name,  role } = registerDto; 
+    const { email, password, name, role } = registerDto; 
 
     const existingUser = await this.prismaService.user.findUnique({
       where: { email },
@@ -38,12 +43,12 @@ export class AuthService {
     return user;
   }
 
-  async login(loginDto: LoginDto){
+  async login(loginDto: LoginDto): Promise<LoginResponse> {
     const { email, password } = loginDto;
 
     const user = await this.prismaService.user.findUnique({
         where: { email },
-    })
+    });
 
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
@@ -53,7 +58,7 @@ export class AuthService {
     if (!passwordMatches) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    const access_token = this.generateToken(user)
+    const { access_token } = this.generateToken(user);
 
     return {
       access_token,
@@ -69,9 +74,9 @@ export class AuthService {
     };
   }
 
-  async whoami(userId: string) {
+  async whoami(userId: string): Promise<User | null> {
     return this.prismaService.user.findUnique({
       where: { id: userId }
-    })
+    });
   }
 }

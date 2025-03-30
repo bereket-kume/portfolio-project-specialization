@@ -1,4 +1,3 @@
-
 import {
   CanActivate,
   ExecutionContext,
@@ -17,7 +16,7 @@ export class AuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
     if (!token) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('No token provided');
     }
     try {
       const payload = await this.jwtService.verifyAsync(
@@ -29,14 +28,13 @@ export class AuthGuard implements CanActivate {
     
       request['user'] = payload;
     } catch {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Invalid token');
     }
     return true;
   }
 
   private extractTokenFromHeader(request: Request): string | undefined {
     const [type, token] = request.headers.authorization?.split(' ') ?? [];
-    console.log(request.headers)
-    return type === 'Bearer' ? token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzAwZjcwNDFkNThhZDQ0NDcwOTZjMDciLCJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTcyODgxODQ2MywiZXhwIjoxNzI4ODIyMDYzfQ.IL4bGU2HPdwEErg2Vtr97dJan2KnNlFA7QogvCraXkM";
+    return type === 'Bearer' ? token : undefined;
   }
 }

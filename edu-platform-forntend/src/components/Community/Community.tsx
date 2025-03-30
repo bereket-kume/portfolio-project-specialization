@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 import './styles/Community.css';
@@ -60,22 +60,17 @@ const Community = () => {
     };
 
     const handleJoinCommunity = async (communityId: string) => {
-        const token = localStorage.getItem("access_token");
         try {
-            const response = await axios.post(
-                `http://localhost:3000/community/join/${communityId}`,
-                {},
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+            const token = localStorage.getItem('access_token');
+            await axios.post(`http://localhost:3000/community/${communityId}/join`, {}, {
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
-            );
-            console.log("Joined community:", response.data);
-            alert("Successfully joined the community!");
+            });
+            alert('Successfully joined the community!');
         } catch (error) {
-            console.error("Join community error:", error);
-            alert("Failed to join the community. Please try again.");
+            console.error('Error joining community:', error);
+            alert('Failed to join the community. Please try again.');
         }
     };
 
@@ -103,7 +98,7 @@ const Community = () => {
                             {community.isPremium ? (
                                 <button 
                                     className="checkout-btn"
-                                    onClick={() => handlePremiumCheckout(community.id, community.name, community.price!)} // Non-null assertion as price is optional
+                                    onClick={() => handlePremiumCheckout(community.id, community.name, community.price!)}
                                 >
                                     Pay and Join
                                 </button>

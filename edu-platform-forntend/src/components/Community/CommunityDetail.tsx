@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import './styles/communityDetail.css';
@@ -45,42 +45,30 @@ const CommunityDetail = () => {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row'}}>
     <div className="community-detail-container">
       <div className="community-info">
         <h1>{community?.name}</h1>
         <p>{community?.description}</p>
-        {community?.isPremium && <div className="prem-label">Premium Community</div>}
       </div>
 
       <div className="announcements-section">
         <h2>Announcements</h2>
-        <ul className="announcement-list">
-          {announcements.length > 0 ? (
-            announcements
-              .filter(announcement => announcement.communityId === community?.id)
-              .map((announcement) => (
-                <li key={announcement.id} className="announcement-item">
-                  <p>{announcement.content}</p>
-                  <small>Posted by: {announcement.creatorName}</small>
-                </li>
-              ))
-          ) : (
-            <li>No announcements found for this community.</li>
-          )}
-        </ul>
+        {announcements.length > 0 ? (
+          <ul className="announcements-list">
+            {announcements.map((announcement) => (
+              <li key={announcement.id} className="announcement-item">
+                <p>{announcement.content}</p>
+                <small>Posted by: {announcement.creatorName}</small>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No announcements yet.</p>
+        )}
       </div>
+
       <TestimonialSlider />
     </div>
-     <div className="additional-section">
-     <h2>Recent Members</h2>
-     <ul className="members-list">
-       <li>John Doe</li>
-       <li>Jane Smith</li>
-       <li>Chris Johnson</li>
-     </ul>
-   </div>
-   </div>
   );
 };
 

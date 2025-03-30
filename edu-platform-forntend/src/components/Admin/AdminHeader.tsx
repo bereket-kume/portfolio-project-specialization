@@ -1,7 +1,18 @@
 import './styles/adminHeader.css'; 
 import { Link, useNavigate } from 'react-router-dom';
 
-const AdminHeader = ({ user, setUser }) => {
+interface User {
+  email: string;
+  role: string;
+  avatar?: string;
+}
+
+interface AdminHeaderProps {
+  user: User | null;
+  setUser: (user: User | null) => void;
+}
+
+const AdminHeader: React.FC<AdminHeaderProps> = ({ setUser }) => {
   const navigate = useNavigate();
 
   const signOut = () => {
@@ -9,18 +20,17 @@ const AdminHeader = ({ user, setUser }) => {
     localStorage.removeItem('user');
     setUser(null);
     navigate('/');
-};
+  };
 
   return (
     <header className="admin-header">
-      <div >
-
-      <section className="admin-banner">
-        <h1>We are here to connect the community</h1>
-      </section>
-      <section className="admin-sub-banner">
-        <h2>Take control of your community with real-time insights and data management</h2>
-      </section>
+      <div>
+        <section className="admin-banner">
+          <h1>We are here to connect the community</h1>
+        </section>
+        <section className="admin-sub-banner">
+          <h2>Take control of your community with real-time insights and data management</h2>
+        </section>
       </div>
       
       <aside className="admin-sidebar open"> 
@@ -38,7 +48,6 @@ const AdminHeader = ({ user, setUser }) => {
             <li>
               <Link to='/admin/view-communities'>View Communities</Link>
             </li>
-           
             <button className="signout-btn" onClick={signOut}>Sign out</button>
           </ul>
         </nav>
@@ -47,4 +56,4 @@ const AdminHeader = ({ user, setUser }) => {
   );
 };
 
-export default AdminHeader;
+export default AdminHeader; 
