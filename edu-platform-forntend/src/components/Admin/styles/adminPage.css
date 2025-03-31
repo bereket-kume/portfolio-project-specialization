@@ -2,12 +2,12 @@
   display: flex; /* This ensures both inner divs are in the same line */
   justify-content: center; /* Aligns the items horizontally in the center */
   align-items: center; /* Vertically aligns the items */
-  gap: 20px; /* Adds some space between the charts */
+  gap: 20px;
 }
 
 .chart-container {
   flex: 1; 
-  max-width: 600px; /* Adjust as needed */
+  max-width: 60px; /* Adjust as needed */
   height: 400px; /* Set the height for each chart */
   padding: 20px;
 }

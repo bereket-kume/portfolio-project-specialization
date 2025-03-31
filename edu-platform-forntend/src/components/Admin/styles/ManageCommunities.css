@@ -1,0 +1,199 @@
+.manage-communities-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.manage-communities-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.manage-communities-header h1 {
+    color: #2c3e50;
+    margin: 0;
+}
+
+.create-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-btn:hover {
+    background-color: #2980b9;
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+}
+
+.error-message {
+    background-color: #fde8e8;
+    color: #e74c3c;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.success-message {
+    background-color: #e8f8f0;
+    color: #27ae60;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.communities-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.community-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.community-info {
+    flex: 1;
+}
+
+.community-info h3 {
+    color: #2c3e50;
+    margin: 0 0 0.5rem 0;
+}
+
+.description {
+    color: #7f8c8d;
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+}
+
+.community-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.premium-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.premium-badge.premium {
+    background-color: #f1c40f;
+    color: #fff;
+}
+
+.premium-badge.free {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.price {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+.members {
+    color: #7f8c8d;
+    font-size: 0.875rem;
+}
+
+.date {
+    color: #95a5a6;
+    font-size: 0.875rem;
+}
+
+.community-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+}
+
+.edit-btn:hover {
+    background-color: #2980b9;
+}
+
+.delete-btn {
+    background-color: #fff;
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+}
+
+.delete-btn:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.no-communities {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.no-communities p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .manage-communities-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .community-card {
+        flex-direction: column;
+    }
+
+    .community-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .community-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+} 

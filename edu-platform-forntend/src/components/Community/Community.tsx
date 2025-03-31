@@ -10,6 +10,7 @@ interface Community {
     description: string;
     isPremium: boolean;
     price?: number; // Optional price for premium communities
+    members: number;
 }
 
 const stripePromise = loadStripe("pk_test_51Q7WR407yXrbnphs2Yli0guMG4hgRU808Sqhdc58w4sF0mRZ8Nh7zg973YH2ZK32Xsnz3MgaTXE2xwtwEmgNjCPd00AwiW1G33");
@@ -59,18 +60,39 @@ const Community = () => {
         }
     };
 
-    const handleJoinCommunity = async (communityId: string) => {
+    const handleJoinCommunity = async (communityId: string, isPremium: boolean, price?: number) => {
         try {
             const token = localStorage.getItem('access_token');
-            await axios.post(`http://localhost:3000/community/${communityId}/join`, {}, {
-                headers: {
-                    Authorization: `Bearer ${token}`
+            if (!token) {
+                alert('Please log in to join a community');
+                return;
+            }
+
+            if (isPremium) {
+                if (!price) {
+                    alert('Price information is missing for this premium community');
+                    return;
                 }
-            });
-            alert('Successfully joined the community!');
+                await handlePremiumCheckout(communityId, communities.find(c => c.id === communityId)?.name || '', price);
+            } else {
+                const response = await axios.post(`http://localhost:3000/community/join/${communityId}`, {}, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                
+                if (response.status === 200) {
+                    alert('Successfully joined the community!');
+                    fetchCommunities(); // Refresh the communities list
+                }
+            }
         } catch (error) {
             console.error('Error joining community:', error);
-            alert('Failed to join the community. Please try again.');
+            if (axios.isAxiosError(error)) {
+                alert(error.response?.data?.message || 'Failed to join the community. Please try again.');
+            } else {
+                alert('Failed to join the community. Please try again.');
+            }
         }
     };
 
@@ -87,32 +109,26 @@ const Community = () => {
             {communities.length === 0 ? (
                 <p>No communities found.</p>
             ) : (
-                <ul className="community-list">
+                <div className="communities-grid">
                     {communities.map((community) => (
-                        <li key={community.id} className={`community-item ${community.isPremium ? 'premium' : 'free'}`}>
-                            {community.isPremium && <div className="premium-label">Premium</div>}
-                            <h2>{community.name}</h2>
+                        <div key={community.id} className="community-card">
+                            <h3>{community.name}</h3>
                             <p>{community.description}</p>
-                            {community.isPremium && <h2>{`${community.price}$`}</h2>}
-
-                            {community.isPremium ? (
-                                <button 
-                                    className="checkout-btn"
-                                    onClick={() => handlePremiumCheckout(community.id, community.name, community.price!)}
-                                >
-                                    Pay and Join
-                                </button>
-                            ) : (
-                                <button 
-                                    className="join-btn"
-                                    onClick={() => handleJoinCommunity(community.id)} 
-                                >
-                                    Join
-                                </button>
-                            )}
-                        </li>
+                            <div className="community-info">
+                                <span>Members: {community.members}</span>
+                                {community.isPremium && (
+                                    <span className="premium-badge">Premium</span>
+                                )}
+                            </div>
+                            <button
+                                onClick={() => handleJoinCommunity(community.id, community.isPremium, community.price)}
+                                className={`join-button ${community.isPremium ? 'premium' : ''}`}
+                            >
+                                {community.isPremium ? 'Join Premium' : 'Join Community'}
+                            </button>
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );

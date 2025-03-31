@@ -1,130 +1,111 @@
 /* Main container for the entire community section */
 .community-container {
+    padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 30px;
-    background-color: #f7f7f7;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    background-color: #ffffff;
+    min-height: 100vh;
 }
 
 /* Styling for 'No communities found' message */
 .community-container p {
     font-size: 1.5rem;
-    color: #555;
+    color: #7f8c8d;
     padding: 40px;
 }
 
 /* List of communities */
-.community-list {
-    list-style-type: none;
-    padding: 0;
+.communities-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
 }
 
 /* Each community item/card */
-.community-item {
-    background-color: #fff;
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+.community-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid #e0e0e0;
 }
 
-.community-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+.community-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Premium community label */
-.premium-label {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #ffbf00;
-    color: white;
-    font-weight: bold;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.9rem;
+.community-card h3 {
+    color: #2c3e50;
+    margin: 0;
+    font-size: 1.5rem;
 }
 
-/* Premium community styling */
-.premium {
-    border: 2px solid #f5a623;
-    background-color: #fffdf2;
-}
-
-/* Free community styling */
-.free {
-    border: 2px solid #00aaff;
-    background-color: #f4faff;
-}
-
-/* Community title */
-.community-item h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #333;
-    font-weight: 600;
-}
-
-/* Community description */
-.community-item p {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-/* Price for premium communities */
-.community-item h2 {
-    color: #f00;
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-}
-
-/* Checkout button for premium communities */
-.checkout-btn {
-    background-color: #ff6f00;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 6px;
+.community-card p {
+    color: #7f8c8d;
+    margin: 0;
+    line-height: 1.6;
     font-size: 1rem;
-    font-weight: bold;
+}
+
+.community-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    color: #7f8c8d;
+}
+
+.premium-badge {
+    background-color: #f1c40f;
+    color: #2c3e50;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.join-button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.checkout-btn:hover {
-    background-color: #e65c00;
+.join-button:not(.premium) {
+    background-color: #3498db;
+    color: #ffffff;
 }
 
-/* Join button for free communities */
-.join-btn {
-    background-color: #00aaff;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: bold;
-    display: inline-block;
-    transition: background-color 0.3s ease;
+.join-button:not(.premium):hover {
+    background-color: #2980b9;
 }
 
-.join-btn:hover {
-    background-color: #008fd4;
+.join-button.premium {
+    background-color: #f1c40f;
+    color: #2c3e50;
+}
+
+.join-button.premium:hover {
+    background-color: #f39c12;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .community-list {
+    .community-container {
+        padding: 1rem;
+    }
+
+    .communities-grid {
         grid-template-columns: 1fr;
     }
 }

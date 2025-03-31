@@ -1,8 +1,11 @@
 #root {
   max-width: 2000px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
+  background-color: #ffffff;
+  color: #2c3e50;
+  min-height: 100vh;
 }
 
 .logo {
@@ -43,22 +46,110 @@
 
 .app {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: #f8f9fa;
+    background-color: #ffffff;
+    color: #2c3e50;
 }
 
 .main-content {
-    flex: 1;
-    width: 90%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
+    padding-top: 80px;
+    min-height: calc(100vh - 80px);
+    background-color: #ffffff;
 }
 
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --accent-color: #3498db;
+    --accent-hover: #2980b9;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --card-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-border: #e0e0e0;
+    --input-text: #2c3e50;
+    --button-primary: #3498db;
+    --button-primary-hover: #2980b9;
+    --button-secondary: #f8f9fa;
+    --button-secondary-hover: #e9ecef;
+    --button-text: #ffffff;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    background-color: #ffffff;
+    color: #2c3e50;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f8f9fa;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7f8c8d;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2c3e50;
+}
+
+/* Common styles */
+input, textarea, select {
+    background-color: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+button {
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
     .main-content {
-        width: 95%;
-        padding: 10px;
+        padding: 1rem;
     }
 }

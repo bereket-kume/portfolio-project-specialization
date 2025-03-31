@@ -1,8 +1,8 @@
 /* Header container */
 .header {
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     padding: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--shadow-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,6 +10,7 @@
     top: 0;
     z-index: 1000;
     height: 60px;
+    border-bottom: 1px solid var(--border-color);
 }
 
 /* Container to center content */
@@ -31,7 +32,7 @@
 }
 
 .logo a {
-    color: #2c3e50;
+    color: var(--text-primary);
     font-size: 1.25rem;
     font-weight: 700;
     text-decoration: none;
@@ -50,7 +51,7 @@
 
 /* Navigation Links */
 .nav-links a {
-    color: #34495e;
+    color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
@@ -58,20 +59,20 @@
 }
 
 .nav-links a:hover {
-    color: #3498db;
+    color: var(--accent-color);
 }
 
 /* Sign Up Button */
 .signup-btn {
-    background-color: #2563eb;
-    color: white;
+    background-color: var(--accent-color);
+    color: var(--button-text);
     padding: 0.5rem 1rem;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 .signup-btn:hover {
-    background-color: #1d4ed8;
+    background-color: var(--accent-hover);
 }
 
 /* User Menu */
@@ -99,12 +100,13 @@
     position: absolute;
     top: 100%;
     right: 0;
-    background: white;
+    background: var(--bg-primary);
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px var(--shadow-color);
     min-width: 200px;
     margin-top: 0.5rem;
     padding: 0.5rem;
+    border: 1px solid var(--border-color);
 }
 
 .dropdown-menu a,
@@ -113,7 +115,7 @@
     width: 100%;
     padding: 0.75rem 1rem;
     text-align: left;
-    color: #34495e;
+    color: var(--text-primary);
     text-decoration: none;
     border: none;
     background: none;
@@ -124,7 +126,7 @@
 
 .dropdown-menu a:hover,
 .dropdown-menu button:hover {
-    background-color: #f8fafc;
+    background-color: var(--button-secondary-hover);
 }
 
 /* Mobile Menu Button */
@@ -142,7 +144,7 @@
     display: block;
     width: 24px;
     height: 2px;
-    background-color: #34495e;
+    background-color: var(--text-primary);
     transition: all 0.3s ease;
 }
 
@@ -153,21 +155,22 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
+    background: var(--bg-primary);
     padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    border-top: 1px solid var(--border-color);
 }
 
 .mobile-menu a {
     display: block;
     padding: 0.75rem 1rem;
-    color: #34495e;
+    color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
 }
 
 .mobile-menu a:hover {
-    background-color: #f8fafc;
+    background-color: var(--button-secondary-hover);
 }
 
 @media (max-width: 768px) {

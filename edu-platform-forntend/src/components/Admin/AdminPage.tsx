@@ -1,61 +1,51 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import CustomPieChart from './PieChart';
+import React, { useState, useEffect } from 'react';
+import AdminHeader from './AdminHeader';
 import './styles/AdminPage.css';
 
-const AdminPage = () => {
-    const [stats, setStats] = useState({
-        freeCommunities: 0,
-        premiumCommunities: 0,
-        activeUsers: 0,
-        inactiveUsers: 0
-    });
+interface User {
+    name: string;
+    email: string;
+    role: string;
+}
+
+const AdminPage: React.FC = () => {
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
-        fetchStats();
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            setUser(JSON.parse(userData));
+        }
     }, []);
 
-    const fetchStats = async () => {
-        try {
-            const response = await axios.get('http://localhost:3000/admin/stats');
-            setStats(response.data);
-        } catch (error) {
-            console.error('Error fetching stats:', error);
-        }
-    };
-
-    const chartData = [
-        { name: 'Free Communities', value: stats.freeCommunities },
-        { name: 'Premium Communities', value: stats.premiumCommunities },
-        { name: 'Active Users', value: stats.activeUsers },
-        { name: 'Inactive Users', value: stats.inactiveUsers }
-    ];
-
     return (
-        <div className="admin-dashboard">
-            <h1>Admin Dashboard</h1>
-            <div className="stats-container">
-                <div className="stats-card">
-                    <h3>Free Communities</h3>
-                    <p>{stats.freeCommunities}</p>
+        <div className="admin-container">
+            <AdminHeader setUser={setUser} />
+            <main className="admin-content">
+                <div className="admin-header">
+                    <h1>Welcome, {user?.name || 'Admin'}</h1>
+                    <p>Here's what's happening with your communities today.</p>
                 </div>
-                <div className="stats-card">
-                    <h3>Premium Communities</h3>
-                    <p>{stats.premiumCommunities}</p>
+
+                <div className="admin-stats">
+                    <div className="stat-card">
+                        <h3>Total Communities</h3>
+                        <p className="stat-value">0</p>
+                    </div>
+                    <div className="stat-card">
+                        <h3>Active Users</h3>
+                        <p className="stat-value">0</p>
+                    </div>
+                    <div className="stat-card">
+                        <h3>Total Revenue</h3>
+                        <p className="stat-value">$0</p>
+                    </div>
+                    <div className="stat-card">
+                        <h3>Monthly Growth</h3>
+                        <p className="stat-value">0%</p>
+                    </div>
                 </div>
-                <div className="stats-card">
-                    <h3>Active Users</h3>
-                    <p>{stats.activeUsers}</p>
-                </div>
-                <div className="stats-card">
-                    <h3>Inactive Users</h3>
-                    <p>{stats.inactiveUsers}</p>
-                </div>
-            </div>
-            <div className="chart-container">
-                <h2>Platform Statistics</h2>
-                <CustomPieChart data={chartData} />
-            </div>
+            </main>
         </div>
     );
 };

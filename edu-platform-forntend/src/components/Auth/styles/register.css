@@ -1,19 +1,20 @@
 /* Container for the registration form */
 .registration-container {
     max-width: 400px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #fff;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--card-bg);
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    border: 1px solid var(--border-color);
     text-align: center;
   }
   
   /* Form title */
   .registration-container h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 2rem;
   }
   
   /* Message style (for success or error) */
@@ -35,60 +36,60 @@
   
   /* Form group - each input and label */
   .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
     text-align: left;
   }
   
   /* Labels */
   .form-group label {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 5px;
     display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
   }
   
   /* Input fields */
   .form-group input {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
+    padding: 0.75rem;
+    border: 1px solid var(--input-border);
     border-radius: 5px;
-    box-sizing: border-box;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 1rem;
     transition: border-color 0.3s ease;
   }
   
   /* Focus effect for input fields */
   .form-group input:focus {
-    border-color: #007bff; /* Highlight color on focus */
     outline: none;
+    border-color: var(--accent-color);
   }
   
   /* Confirm password error message */
   .form-group .confirm-error {
-    font-size: 14px;
-    color: #dc3545; /* Error color for confirm password */
-    margin-top: 5px;
-    display: none; /* Hidden initially, shown when error occurs */
+    color: var(--error-color);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
   }
   
   /* Submit button */
   button[type="submit"] {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff;
+    padding: 0.75rem;
+    background-color: var(--accent-color);
+    color: var(--button-text);
     border: none;
     border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 15px;
   }
   
   /* Hover effect for submit button */
   button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: var(--accent-hover);
   }
   
   /* Add some space between form elements */
@@ -97,14 +98,37 @@
   }
   
   /* General responsive styles */
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .registration-container {
-      width: 90%;
-      padding: 20px;
+      margin: 1rem;
+      padding: 1.5rem;
     }
   
     button[type="submit"] {
       font-size: 14px;
     }
+  }
+  
+  /* Login link styles */
+  .login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-secondary);
+  }
+  
+  .login-link a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Disabled submit button styles */
+  button[type="submit"]:disabled {
+    background-color: var(--text-secondary);
+    cursor: not-allowed;
   }
   

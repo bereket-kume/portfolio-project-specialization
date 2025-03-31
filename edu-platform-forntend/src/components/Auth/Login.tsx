@@ -27,23 +27,24 @@ const Login: React.FC<LoginProps> = ({ setUser }) => {
                 password,
             });
 
-            const token = res.data.access_token.access_token;
+            const token = res.data.access_token;
             localStorage.setItem('access_token', token);
 
             const userData: User = {
                 email,
-                role: res.data.role,  
+                role: res.data.role,
             };
             setUser(userData);
             localStorage.setItem('user', JSON.stringify(userData));
+            localStorage.setItem('user_role', res.data.role.toLowerCase());
 
             setSuccess("Login successful!");
             setError("");
 
-            if (res.data.role === 'ADMIN') {
-                navigate('/admin');  
+            if (res.data.role.toLowerCase() === 'admin') {
+                navigate('/admin');
             } else {
-                navigate('/'); 
+                navigate('/');
             }
 
         } catch (err) {
