@@ -41,7 +41,7 @@ const Registration = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:3000/auth/register', formData);
+      const response = await axios.post('http://13.60.58.96:3000/auth/register', formData);
       console.log('User registered:', response.data);
       navigate('/login');
     } catch (error) {

@@ -42,7 +42,7 @@ const EditCommunity: React.FC = () => {
                     throw new Error('No authentication token found');
                 }
 
-                const response = await axios.get<CommunityFormData>(`http://localhost:3000/community/${id}`, {
+                const response = await axios.get<CommunityFormData>(`http://13.60.58.96:3000/community/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -79,7 +79,7 @@ const EditCommunity: React.FC = () => {
                 throw new Error('No authentication token found');
             }
 
-            const response = await axios.put(`http://localhost:3000/community/${id}`, formData, {
+            const response = await axios.put(`http://13.60.58.96:3000/community/${id}`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'

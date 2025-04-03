@@ -36,7 +36,7 @@ const ManageCommunities: React.FC = () => {
                     throw new Error('No authentication token found');
                 }
 
-                const response = await axios.get<Community[]>('http://localhost:3000/community', {
+                const response = await axios.get<Community[]>('http://13.60.58.96:3000/community', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -65,7 +65,7 @@ const ManageCommunities: React.FC = () => {
                 throw new Error('No authentication token found');
             }
 
-            await axios.delete(`http://localhost:3000/community/${id}`, {
+            await axios.delete(`http://13.60.58.96:3000/community/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

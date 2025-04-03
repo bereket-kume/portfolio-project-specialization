@@ -32,7 +32,7 @@ const Profile: React.FC<ProfileProps> = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await axios.get<UserProfile>('http://localhost:3000/user/profile', {
+                const response = await axios.get<UserProfile>('http://13.60.58.96:3000/user/profile', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

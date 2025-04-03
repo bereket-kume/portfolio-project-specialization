@@ -52,7 +52,7 @@ const CreateCommunity: React.FC = () => {
                 throw new Error('No authentication token found');
             }
 
-            const response = await axios.post('http://localhost:3000/community', formData, {
+            const response = await axios.post('http://13.60.58.96:3000/community', formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'

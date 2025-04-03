@@ -14,7 +14,7 @@ const SuccessPage = () => {
     useEffect(() => {
         const joinCommunity = async () => {
             try {
-                const response = await axios.post(`http://localhost:3000/community/join/${communityId}`, {}, {
+                const response = await axios.post(`http://13.60.58.96:3000/community/join/${communityId}`, {}, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

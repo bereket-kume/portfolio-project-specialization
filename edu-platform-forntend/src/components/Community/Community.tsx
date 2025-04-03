@@ -26,7 +26,7 @@ const Community = () => {
 
     const fetchCommunities = async () => {
         try {
-            const response = await axios.get<Community[]>("http://localhost:3000/community"); // Typed response
+            const response = await axios.get<Community[]>("http://13.60.58.96:3000/community"); // Typed response
             setCommunities(response.data);
             setLoading(false);
         } catch (err) {
@@ -37,7 +37,7 @@ const Community = () => {
 
     const handlePremiumCheckout = async (communityId: string, communityName: string, price: number) => {
         try {
-            const response = await axios.post("http://localhost:3000/subscription/create-checkout-session", {
+            const response = await axios.post("http://13.60.58.96:3000/subscription/create-checkout-session", {
                 communityId,
                 communityName,
                 price
@@ -75,7 +75,7 @@ const Community = () => {
                 }
                 await handlePremiumCheckout(communityId, communities.find(c => c.id === communityId)?.name || '', price);
             } else {
-                const response = await axios.post(`http://localhost:3000/community/join/${communityId}`, {}, {
+                const response = await axios.post(`http://13.60.58.96:3000/community/join/${communityId}`, {}, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

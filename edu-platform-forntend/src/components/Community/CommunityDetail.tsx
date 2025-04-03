@@ -18,7 +18,7 @@ const CommunityDetail = () => {
 
   const fetchCommunityDetails = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/community/${communityId}`);
+      const response = await axios.get(`http://13.60.58.96:3000/community/${communityId}`);
       setCommunity(response.data);
       setLoading(false);
     } catch (err) {
@@ -29,7 +29,7 @@ const CommunityDetail = () => {
 
   const fetchCommunityAnnouncements = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/announcements?communityId=${communityId}`);
+      const response = await axios.get(`http://13.60.58.96:3000/announcements?communityId=${communityId}`);
       setAnnouncements(response.data);
     } catch (err) {
       setError("Error fetching community announcements.");

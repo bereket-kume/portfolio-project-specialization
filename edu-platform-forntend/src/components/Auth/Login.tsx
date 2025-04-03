@@ -22,7 +22,7 @@ const Login: React.FC<LoginProps> = ({ setUser }) => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3000/auth/login", {
+            const res = await axios.post("http://13.60.58.96:3000/auth/login", {
                 email,
                 password,
             });
